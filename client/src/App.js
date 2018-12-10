@@ -18,7 +18,7 @@ class App extends Component {
           <Route exact path="/posts/:make?/:model?/:year?" component={Posts} />
           {/* <Route exact path="/item/:id" component={Item} /> */}
           <Route exact path="/signup" component={SignUp} />
-          {/* <Route exact path="/login" component={LogIn} /> */}
+          <Route exact path="/login" component={LogIn} />
           <Route component={NoMatch} />
         </Switch>
       </div>

@@ -14,14 +14,14 @@ class LogIn extends Component {
               <label>
                 Email Address<span className="req">*</span>
               </label>
-              <input type="email" required autocomplete="false" id="login-email-input"/>
+              <input type="email" required autoComplete="false" id="login-email-input"/>
             </div>
             
             <div className="field-wrap">
               <label>
                 Password<span className="req">*</span>
               </label>
-              <input type="password" required autocomplete="false" id="login-password-input"/>
+              <input type="password" required autoComplete="false" id="login-password-input"/>
             </div>
             
             <p className="forgot"><a href="#">Forgot Password?</a></p>

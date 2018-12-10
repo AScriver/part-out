@@ -29,7 +29,7 @@ class SignUp extends Component {
       email: this.state.email,
       username: this.state.username,
       password: this.state.password
-    }).then(res => console.log(res))
+    }).then(dbModel => window.location.href = '/login') // need this to come from the server
       .catch(function (error) {
       if (error.response) {
         // The request was made and the server responded with a status code

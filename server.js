@@ -45,3 +45,6 @@ db.sequelize.sync({ force: true }).then(function() {
     console.log("App listening on PORT " + PORT);
   });
 });
+
+// External CDNs can be linked in the ___ file, and static assets 
+// placed in the ___ folder, that will not be processed by Babel or Webpack.
