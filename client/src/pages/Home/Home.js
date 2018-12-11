@@ -1,16 +1,10 @@
 import React, { Component } from "react";
 
-class Home extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            posts: []
-        }
-    }
 
+class Home extends Component {
     render() {
         return (
-            <h1>Home Page Rendered!</h1>
+            <h1>{this.props.user}</h1>
         );
     };
 };

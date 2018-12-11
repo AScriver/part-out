@@ -12,5 +12,9 @@ export default {
         console.log("==================USER LOGIN - SENT TO API/LOGIN====================");
         console.log(user);
         return axios.post('/api/login', user);
+    },
+    getUser: function () {
+        console.log("==================GET USER====================");
+        return axios.get('/api/user_data');
     }
 }

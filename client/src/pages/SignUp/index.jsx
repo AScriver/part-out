@@ -29,8 +29,10 @@ class SignUp extends Component {
       email: this.state.email,
       username: this.state.username,
       password: this.state.password
-    }).then(dbModel => window.location.href = '/login') // need this to come from the server
-      .catch(function (error) {
+    }).then(resp => {
+      // console.log(resp);
+      window.location.replace(resp.data);
+    }).catch(function (error) {
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx

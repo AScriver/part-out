@@ -8,10 +8,6 @@ const routes = require("./routes");
 // Requiring passport as we've configured it
 var passport = require("./config/passport");
 
-// User img upload packages (Called elsewhere, kept here for organization)
-// const path = require('path');
-// const multer = require('multer');
-
 // Setting up port and requiring models for syncing
 var PORT = process.env.PORT || 3001;
 var db = require("./models");

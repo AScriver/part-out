@@ -22,8 +22,10 @@ class LogIn extends Component {
     API.login({
       username: this.state.username,
       password: this.state.password
-    }).then(resp => window.location.replace(resp))
-    .catch(function (error) {
+    }).then(resp => {
+      console.log(resp);
+      window.location.replace(resp.data)
+    }).catch(function (error) {
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
