@@ -7,54 +7,32 @@ import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
 import Submit from "./pages/Submit";
 import API from './utils/API';
-import PrivateRoute from './components/PrivateRoute';
 import "./App.css";
-
 
 class App extends Component {
   state = {
-    email: "",
-    user: "",
-    profileImg: "",
-    firstname: "",
-    lastName: ""
+    user: ""
   };
 
   componentDidMount() {
     this.getUser();
   }
 
-  login = (user) => {
-    this.setState({
-      user: user
-    })
-  }
-
   getUser = () => {
     API.getUser()
       .then(res => {
         this.setState({
-          email: res.data.email,
-          user: res.data.username,
-          profileImg: res.data.profileImg,
-          firstName: res.data.firstName,
-          lastName: res.data.lastName 
+          user: res.data.username //this response is sending back a password, change to only send necessary information
         });
       })
       .catch(function(error) {
         if (error.response) {
-          // The request was made and the server responded with a status code
-          // that falls out of the range of 2xx
           console.log(error.response.data);
           console.log(error.response.status);
           console.log(error.response.headers);
         } else if (error.request) {
-          // The request was made but no response was received
-          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-          // http.ClientRequest in node.js
           console.log(error.request);
         } else {
-          // Something happened in setting up the request that triggered an Error
           console.log("Error", error.message);
         }
         console.log(error.config);
@@ -65,27 +43,9 @@ class App extends Component {
     return (
       <div>
         <Switch>
-
-          {/* <Route exact path="/" render={() => <Home 
-            user={this.state.user}
-            email={this.state.email}
-            profileImg={this.state.profileImg}
-            firstName={this.state.firstName}
-            lastname={this.state.lastName}
-            />}
-            /> */}
-            <Route exact path="/signup" component={SignUp} />
-            <Route exact path="/login" render={() => <LogIn login={this.login} />} />
-            <PrivateRoute path="/" 
-              component={Home}
-              user={this.state.user}
-              email={this.state.email}
-              profileImg={this.state.profileImg}
-              firstName={this.state.firstName}
-              lastname={this.state.lastName} />
-
-          {/* <Route exact path="/item/:id" component={Item} /> */}
-          
+          <Route exact path="/" render={() => <Home user={this.state.user}/>}/>
+          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/login" component={LogIn} />
           <Route component={NoMatch} />
         </Switch>
       </div>

@@ -24,8 +24,7 @@ class LogIn extends Component {
       password: this.state.password
     }).then(resp => {
       console.log(resp);
-      // window.location.replace(resp.data)
-      this.props.login();
+      window.location.replace(resp.data)
     }).catch(function (error) {
       if (error.response) {
         // The request was made and the server responded with a status code
@@ -48,7 +47,6 @@ class LogIn extends Component {
 
 
   render() {
-    console.log(this.props);
     return (
       <div className="form">
       <div id="login">   
