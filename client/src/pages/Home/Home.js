@@ -1,15 +1,18 @@
 import React, { Component } from "react";
-
+import { Redirect } from "react-router-dom";
+import Posts from "../Posts";
 
 class Home extends Component {
-    render() {
+    render(props) {
         return (
             <div>
-            <h1>{this.props.user}</h1>
-            <h1>{this.props.email}</h1>
-            <h1>{this.props.profileImg}</h1>
-            <h1>{this.props.firstName}</h1>
-            <h1>{this.props.lastName}</h1>
+                {(this.props.user != undefined) ? (
+                    <h1>Wecome {this.props.user}</h1>
+                ) : (
+                    <Redirect to={{
+                        pathname: "/signup"
+                      }} />
+                )}
             </div>
             );
     };

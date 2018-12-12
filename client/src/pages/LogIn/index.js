@@ -23,7 +23,7 @@ class LogIn extends Component {
       username: this.state.username,
       password: this.state.password
     }).then(resp => {
-      console.log(resp);
+      // console.log(resp);
       window.location.replace(resp.data)
     }).catch(function (error) {
       if (error.response) {

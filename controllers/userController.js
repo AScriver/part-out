@@ -13,7 +13,7 @@ module.exports = {
   },
   sendUserData: function(req, res) {
     console.log(req.user);
-    console.log("==================req=================")
+    console.log("================== req.user - UserController.js (sendUserData) =================")
     res.json(req.user)
   }
 };

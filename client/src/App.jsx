@@ -6,6 +6,7 @@ import Posts from "./pages/Posts";
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
 import Submit from "./pages/Submit";
+import PrivateRoute from "./components/PrivateRoute";
 import API from './utils/API';
 import "./App.css";
 
@@ -25,25 +26,15 @@ class App extends Component {
           user: res.data.username //this response is sending back a password, change to only send necessary information
         });
       })
-      .catch(function(error) {
-        if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        } else if (error.request) {
-          console.log(error.request);
-        } else {
-          console.log("Error", error.message);
-        }
-        console.log(error.config);
-      });
+      .catch(err => console.log(err));
   };
 
   render() {
     return (
       <div>
         <Switch>
-          <Route exact path="/" render={() => <Home user={this.state.user}/>}/>
+          {/* Home is getting user here. Maybe use home as an alternative App.js? */}
+          <Route exact path="/" render={() => <Home user={this.state.user}/>}/> 
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/login" component={LogIn} />
           <Route component={NoMatch} />
@@ -75,3 +66,9 @@ you need to declare the shared state in their parent component instead. The pare
 the state back down to the children by using props; this keeps the child components in sync with each 
 other and with the parent component.
 */
+
+
+// https://www.youtube.com/watch?v=IXVURoGB59E - React JS Front-End + MySQL/MongoDB Login Registration Components Example
+
+// https://www.youtube.com/watch?v=oRL-pttfNSc - React Client Side Authentication
+

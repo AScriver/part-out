@@ -6,14 +6,11 @@ import {
 
 function PrivateRoute({ component: Component, ...rest }) {
     return (
-      <Route
-        {...rest}
-        render={props =>
+      <Route {...rest} render={props =>
           props.user ? (
             <Component {...props} />
           ) : (
-            <Redirect
-              to={{
+            <Redirect to={{
                 pathname: "/login",
                 state: { from: props.location }
               }}
