@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 import { Input, FormBtn } from "../../components/Form";
 import API from '../../utils/API';
+import { signin, signout } from "../../state/auth/actions";
 import "./index.css";
 
 class LogIn extends Component {
@@ -24,24 +26,9 @@ class LogIn extends Component {
       password: this.state.password
     }).then(resp => {
       // console.log(resp);
-      window.location.replace(resp.data)
+      window.location.replace(resp.data);
     }).catch(function (error) {
-      if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.headers);
-      } else if (error.request) {
-        // The request was made but no response was received
-        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-        // http.ClientRequest in node.js
-        console.log(error.request);
-      } else {
-        // Something happened in setting up the request that triggered an Error
-        console.log('Error', error.message);
-      }
-      console.log(error.config);
+      console.log(error);
     });
   }
 
@@ -84,6 +71,21 @@ class LogIn extends Component {
               disabled={!(this.state.password && this.state.username)}
               onClick={this.handleFormSubmit}
               >Sign Up</FormBtn>
+
+              <FormBtn
+              className="button button-block"
+              onClick={(e)=>{
+                e.preventDefault();
+                this.props.signinButton();
+              }}>Signin Mock</FormBtn>
+
+              <FormBtn
+              className="button button-block"
+              onClick={(e) => {
+                e.preventDefault();
+                this.props.logoutButton();
+              }}
+              >Logout Mock</FormBtn>
             
             </form>
   
@@ -93,4 +95,28 @@ class LogIn extends Component {
   }
 }
 
-export default LogIn;
+
+// authenticated is props.authenticated
+const mapStateToProps = state => {
+  return {
+    authenticated: state.auth.signin
+  };
+};
+
+function mapDispatchToProps(dispatch){
+  return {
+    signinButton() {
+      dispatch(signin({
+        user: {
+          name: "Austin"
+        },
+        token: "token!!!!"
+      }));
+    },
+    logoutButton(){
+      dispatch(signout());
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogIn);

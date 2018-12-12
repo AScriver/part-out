@@ -14,15 +14,24 @@ class Navbar extends Component {
     render() {
         return (
         <div>
-            <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar fixed-top navbar-expand navbar-light bg-light">
                 <Link to="/" className="navbar-brand"> PartOut </Link>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav nav-pills nav-fill ml-auto">
-                        <li class="nav-item">
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul className="navbar-nav nav-pills nav-fill">
+                    <li className="nav-item">
+                            <Link to="/" className="nav-link">{this.props.user}</Link>
+                        </li>
+                        {/* <li className="nav-item">
                             <Link to="/" className="nav-link"> My Parts </Link>
                         </li>
                         <li class="nav-item">
                             <Link to="/" className="nav-link"> Logout </Link>
+                        </li> */}
+                        <li class="nav-item">
+                            <Link to="/submit" className="nav-link"> /submit </Link>
+                        </li>
+                        <li class="nav-item">
+                            <Link to="/" className="nav-link"> / </Link>
                         </li>
                     </ul>
                 </div>

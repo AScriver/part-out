@@ -1,45 +1,50 @@
-import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
-import Home from "./pages/Home/Home";
+import NavbarFix from './components/NavbarFix';
+import React, { Component } from "react";
+import Navbar from './components/Navbar';
+import Restrict from "./pages/Restrict";
 import NoMatch from "./pages/NoMatch";
-import Posts from "./pages/Posts";
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
-import Submit from "./pages/Submit";
-import PrivateRoute from "./components/PrivateRoute";
 import API from './utils/API';
 import "./App.css";
 
+import store from './state';
+import { Provider } from "react-redux";
+
 class App extends Component {
-  state = {
-    user: ""
-  };
+  // state = {
+  //   user: ""
+  // };
 
-  componentDidMount() {
-    this.getUser();
-  }
+  // componentDidMount() {
+  //   this.getUser();
+  // }
 
-  getUser = () => {
-    API.getUser()
-      .then(res => {
-        this.setState({
-          user: res.data.username //this response is sending back a password, change to only send necessary information
-        });
-      })
-      .catch(err => console.log(err));
-  };
+  // getUser = () => {
+  //   API.getUser()
+  //     .then(res => {
+  //       this.setState({
+  //         user: res.data.username //this response is sending back a password, change to only send necessary information
+  //       });
+  //     })
+  //     .catch(err => console.log(err));
+  // };
 
   render() {
     return (
+      <Provider store={store}>
       <div>
+        <Navbar />
+        <NavbarFix />
         <Switch>
-          {/* Home is getting user here. Maybe use home as an alternative App.js? */}
-          <Route exact path="/" render={() => <Home user={this.state.user}/>}/> 
+          <Route exact path="/" render={() => <Restrict user={this.state.user}/>}/> 
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/login" component={LogIn} />
           <Route component={NoMatch} />
         </Switch>
       </div>
+      </Provider>
     );
   }
 }

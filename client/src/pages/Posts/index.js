@@ -98,8 +98,7 @@ class Posts extends Component {
     render() {
         return (
             <div>
-                <Navbar />
-                <NavbarFix />
+                <Navbar  user={this.props.user}/>
                 <div className="container-fluid">
                     <div className="row">
                         <Sidebar />
