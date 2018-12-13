@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Input, FormBtn } from "../../components/Form";
 import API from '../../utils/API';
 import { signinReq, signoutReq } from "../../state/auth/actions";
+import {withRouter} from 'react-router'
 import "./index.css";
 
 class LogIn extends Component {
@@ -34,10 +35,15 @@ class LogIn extends Component {
           authenticated: true,
           username: resp.data.username
         });
+        
         this.props.signin(
           this.state.username, 
           this.state.authenticated
         );
+
+        const {history} = this.props;
+        history.push('/')
+
       } else {
         this.setState({
           err: "Incorrect username or password."
@@ -139,4 +145,4 @@ function mapDispatchToProps(dispatch){
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LogIn);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LogIn));

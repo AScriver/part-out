@@ -16,8 +16,9 @@ router.post("/login", passport.authenticate("local"), function(req, res) {
   // They won't get this or even be able to access this page if they aren't authed
   res.json(req.user);
   console.log("========================== REQ.USER - FROM PASSPORT ==========================")
-  // console.log(req)
+  // console.log(req.headers.cookie)
 });
 //dispatch signin and post this user information
+// https://stackoverflow.com/questions/44107665/how-to-access-a-browser-cookie-in-a-react-app
 
 module.exports = router;

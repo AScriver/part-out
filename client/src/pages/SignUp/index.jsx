@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import "./index.css";
 import API from '../../utils/API';
 import { Input, FormBtn } from "../../components/Form";
+import {withRouter} from 'react-router'
 
 class SignUp extends Component {
   state = {
@@ -32,8 +33,10 @@ class SignUp extends Component {
       password: this.state.password
     }).then(resp => {
       // console.log(resp);
-      window.location.replace(resp.data);
+      // window.location.replace(resp.data);
       // window.history.pushState({}, null, resp.data);
+      const {history} = this.props;
+        history.push('/login')
     }).catch(function (error) {
       if (error.response) {
         console.log(error.response);
@@ -115,7 +118,7 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+export default withRouter(SignUp);
 
 
 
