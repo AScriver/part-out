@@ -23,3 +23,11 @@ export function FormBtn(props) {
     </button>
   );
 }
+
+export function DropDown(props) {
+  return (
+    <select class="form-control" {...props}>
+        {props.children}
+      </select>
+  );
+}
