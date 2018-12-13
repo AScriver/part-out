@@ -49,7 +49,7 @@ class SignUp extends Component {
                   value={this.state.price}
                   onChange={this.handleInputChange}
                   name="price"
-                  type="text"
+                  type="number"
                   placeholder="Price"
                   id="price"
                   min="1"
@@ -57,20 +57,68 @@ class SignUp extends Component {
                   required
                 />
 
-                <DropDown
-                  value={this.state.year}
+                <Input
+                  value={this.state.carYear}
                   onChange={this.handleInputChange}
-                  name="year"
-                  id="year"
-                  required>
-                    <option>years</option>
-                  </DropDown>
+                  name="carYear"
+                  type="number"
+                  placeholder="Year"
+                  id="carYear"
+                  min="1990"
+                  max="2025"
+                  required
+                />
 
+                <Input
+                  value={this.state.carMake}
+                  onChange={this.handleInputChange}
+                  name="carMake"
+                  type="text"
+                  placeholder="Manufacturer"
+                  id="carMake"
+                  required
+                />
+
+                <Input
+                  value={this.state.carModel}
+                  onChange={this.handleInputChange}
+                  name="carModel"
+                  type="text"
+                  placeholder="Model"
+                  id="carModel"
+                  required
+                />
+
+                <Input
+                  value={this.state.location}
+                  onChange={this.handleInputChange}
+                  name="location"
+                  type="text"
+                  placeholder="Location"
+                  id="location"
+                  required
+                />
+
+                <DropDown
+                  value={this.state.category}
+                  onChange={this.handleInputChange}
+                  name="category"
+                  type="text"
+                  id="catecory"
+                >
+                  <option>category</option>
+                </DropDown>
               </div>
-
-              <button className="post-submit-btn" type="submit">
+              <FormBtn
+                type="submit"
+                className="button button-block"
+                onClick={e => {
+                  e.preventDefault();
+                  this.props.logoutButton();
+                }}
+              >
                 Submit
-              </button>
+              </FormBtn>
             </form>
           </div>
         </div>
