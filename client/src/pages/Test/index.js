@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
 
-class SignUp extends Component {
+class Test extends Component {
   render() {
     return (
         <div>
-            <h1>ayy lmao shit works</h1>
+            <h1>This is the test component!</h1>
         </div>
     )
   }
 }
 
-export default SignUp;
+export default Test;

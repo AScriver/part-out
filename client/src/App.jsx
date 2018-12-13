@@ -1,13 +1,15 @@
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import NavbarFix from './components/NavbarFix';
 import AuthRoute from "./utils/AuthRoute";
+import AlreadyAuth from "./utils/AlreadyAuth";
 import React, { Component } from "react";
 import Navbar from './components/Navbar';
-import Home from "./pages/Home";
 import NoMatch from "./pages/NoMatch";
+import Submit from './pages/Submit';
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
 import Posts from "./pages/Posts";
+import Test from "./pages/Test";
 import "./App.css";
 
 import store from './state';
@@ -22,10 +24,11 @@ class App extends Component {
           <Navbar />
           <NavbarFix />
           <Switch>
-            <Route exact path="/" component={AuthRoute(Home)} />
+            <Route exact path="/" component={AuthRoute(Test)} />
+            <Route exact path="/submit" component={AuthRoute(Submit)} />
+            <Route exact path="/signup" component={AlreadyAuth(SignUp)} />
+            <Route exact path="/login" component={AlreadyAuth(LogIn)} />
             <Route exact path="/parts/:make?/:model?/:year?" component={AuthRoute(Posts)} />
-            <Route exact path="/signup" component={SignUp} />
-            <Route exact path="/login" component={LogIn} />
             <Route component={NoMatch} />
           </Switch>
         </div>
