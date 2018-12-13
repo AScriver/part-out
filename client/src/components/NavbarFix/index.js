@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 
-class NavbarFix extends Component {
-    constructor(props) {
-        super(props);
-        // 
-    }
+// This does nothing but push the rest of the page content down while having the other 
+// navbar fixed to the top of the page! There are better ways of doing this, but I didn't
+// have time to mess around with the css.
 
+class NavbarFix extends Component {
     render() {
         return (
             <div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand navbar-light bg-light">
                 <Link to="/" className="navbar-brand"> PartOut </Link>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav nav-pills nav-fill ml-auto">
-                        <li class="nav-item">
-                            <Link to="/" className="nav-link"> My Parts </Link>
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul className="navbar-nav nav-pills nav-fill">
+                    <li className="nav-item">
+                            <Link to="/" className="nav-link">{this.props.user}</Link>
                         </li>
                         <li class="nav-item">
-                            <Link to="/" className="nav-link"> Logout </Link>
+                            <Link to="/submit" className="nav-link"> /submit </Link>
+                        </li>
+                        <li class="nav-item">
+                            <Link to="/" className="nav-link"> / </Link>
                         </li>
                     </ul>
                 </div>

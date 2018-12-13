@@ -6,11 +6,6 @@ import {
 } from "react-router-dom";
 
 class Navbar extends Component {
-    constructor(props) {
-        super(props);
-        // 
-    }
-
     render() {
         return (
         <div>
@@ -32,6 +27,12 @@ class Navbar extends Component {
                         </li>
                         <li class="nav-item">
                             <Link to="/" className="nav-link"> / </Link>
+                        </li>
+                        <li class="nav-item">
+                            <Link to="/login" className="nav-link"> /login </Link>
+                        </li>
+                        <li class="nav-item">
+                            <Link to="/signup" className="nav-link"> /signup </Link>
                         </li>
                     </ul>
                 </div>

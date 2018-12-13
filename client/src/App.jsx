@@ -1,55 +1,39 @@
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import NavbarFix from './components/NavbarFix';
 import React, { Component } from "react";
 import Navbar from './components/Navbar';
-import Restrict from "./pages/Restrict";
 import NoMatch from "./pages/NoMatch";
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
-import API from './utils/API';
+import Posts from "./pages/Posts"
 import "./App.css";
 
 import store from './state';
 import { Provider } from "react-redux";
 
 class App extends Component {
-  // state = {
-  //   user: ""
-  // };
-
-  // componentDidMount() {
-  //   this.getUser();
-  // }
-
-  // getUser = () => {
-  //   API.getUser()
-  //     .then(res => {
-  //       this.setState({
-  //         user: res.data.username //this response is sending back a password, change to only send necessary information
-  //       });
-  //     })
-  //     .catch(err => console.log(err));
-  // };
-
   render() {
     return (
       <Provider store={store}>
-      <div>
-        <Navbar />
-        <NavbarFix />
-        <Switch>
-          <Route exact path="/" render={() => <Restrict user={this.state.user}/>}/> 
-          <Route exact path="/signup" component={SignUp} />
-          <Route exact path="/login" component={LogIn} />
-          <Route component={NoMatch} />
-        </Switch>
-      </div>
+      <Router>
+        <div>
+          <Navbar />
+          <NavbarFix />
+          <Switch>
+            <Route exact path="/parts/:make?/:model?/:year?" component={Posts} />
+            <Route exact path="/signup" component={SignUp} />
+            <Route exact path="/login" component={LogIn} />
+            <Route component={NoMatch} />
+          </Switch>
+        </div>
+        </Router>
       </Provider>
     );
   }
 }
 
 export default App;
+
 
 ////////////////////////////////////////////// N O T E S ///////////////////////////////////////////////////////
 // https://medium.com/@pshrmn/a-simple-react-router-v4-tutorial-7f23ff27adf

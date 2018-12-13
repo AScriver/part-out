@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Input, FormBtn } from "../../components/Form";
 import API from '../../utils/API';
-import { signin, signout } from "../../state/auth/actions";
+import { signinReq, signoutReq } from "../../state/auth/actions";
 import "./index.css";
 
 class LogIn extends Component {
   state = {
     username: "",
     password: "",
+    authenticated: null,
     err: ""
   }
 
@@ -21,12 +22,28 @@ class LogIn extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    API.login({
+    API.signin({
       username: this.state.username,
       password: this.state.password
     }).then(resp => {
-      // console.log(resp);
-      window.location.replace(resp.data);
+      console.log(resp);
+      if (resp.status === 200){
+        //this onlt fires when the user is authenticated.
+        console.log("updating state")
+        this.setState({
+          authenticated: true,
+          username: resp.data.username
+        });
+        this.props.signin(
+          this.state.username, 
+          this.state.authenticated
+        );
+      } else {
+        this.setState({
+          err: "Incorrect username or password."
+        })
+      }
+      
     }).catch(function (error) {
       console.log(error);
     });
@@ -76,7 +93,8 @@ class LogIn extends Component {
               className="button button-block"
               onClick={(e)=>{
                 e.preventDefault();
-                this.props.signinButton();
+                this.handleFormSubmit;
+                
               }}>Signin Mock</FormBtn>
 
               <FormBtn
@@ -96,25 +114,27 @@ class LogIn extends Component {
 }
 
 
+
+// these need to some from the server somehow
 // authenticated is props.authenticated
+//gets store
 const mapStateToProps = state => {
   return {
-    authenticated: state.auth.signin
+    authenticated: state.auth.authenticated
   };
 };
 
+// updates store
 function mapDispatchToProps(dispatch){
   return {
-    signinButton() {
-      dispatch(signin({
-        user: {
-          name: "Austin"
-        },
-        token: "token!!!!"
+    signin(username, authenticated) {
+      dispatch(signinReq({
+        username: username,
+        authenticated: authenticated
       }));
     },
     logoutButton(){
-      dispatch(signout());
+      dispatch(signoutReq());
     }
   }
 }

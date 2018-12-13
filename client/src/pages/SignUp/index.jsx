@@ -9,6 +9,7 @@ class SignUp extends Component {
     username: "",
     password: "",
     confirm: "",
+    redirect: "",
     err: ""
   };
 
@@ -25,27 +26,20 @@ class SignUp extends Component {
       this.setState({err: "Passwords do not match!"});
       return;
     }
-    API.signUp({
+    API.signup({
       email: this.state.email,
       username: this.state.username,
       password: this.state.password
     }).then(resp => {
       // console.log(resp);
       window.location.replace(resp.data);
+      // window.history.pushState({}, null, resp.data);
     }).catch(function (error) {
       if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.headers);
+        console.log(error.response);
       } else if (error.request) {
-        // The request was made but no response was received
-        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-        // http.ClientRequest in node.js
         console.log(error.request);
       } else {
-        // Something happened in setting up the request that triggered an Error
         console.log('Error', error.message);
       }
       console.log(error.config);

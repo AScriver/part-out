@@ -1,21 +1,20 @@
 import { handleActions } from "redux-actions";
-import { signin, signout } from "./actions";
+import { signinReq, signoutReq, updateAuth } from "./actions";
 
 const defaultState = {
   authenticated: false,
-  token: "",
-  user: null
+  username: null
 };
 
 const authReducer = handleActions({
-  [signin]: (state, action) => {
+  [signinReq]: (state, action) => {
     return {
-      user: action.payload.user,
-      authenticated: true,
-      token: action.payload.token
+      username: action.payload.username,
+      authenticated: action.payload.authenticated,
     };
   },
-  [signout]: (state, action) => defaultState
+  [signoutReq]: (state, action) => defaultState,
+  [updateAuth]: (state, action) => action.payload
 }, defaultState);
 
 export default authReducer;
