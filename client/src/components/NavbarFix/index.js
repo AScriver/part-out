@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 class NavbarFix extends Component {
     render() {
         return (
-            <div>
+            <div className="mb-3">
             <nav className="navbar navbar-expand navbar-light bg-light">
                 <Link to="/" className="navbar-brand"> PartOut </Link>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -16,10 +16,10 @@ class NavbarFix extends Component {
                     <li className="nav-item">
                             <Link to="/" className="nav-link">{this.props.user}</Link>
                         </li>
-                        <li class="nav-item">
+                        <li className="nav-item">
                             <Link to="/submit" className="nav-link"> /submit </Link>
                         </li>
-                        <li class="nav-item">
+                        <li className="nav-item">
                             <Link to="/" className="nav-link"> / </Link>
                         </li>
                     </ul>

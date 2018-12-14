@@ -33,8 +33,7 @@ class LogIn extends Component {
     }).then(resp => {
       console.log(resp);
       if (resp.status === 200){
-        //this onlt fires when the user is authenticated.
-        console.log("updating state")
+        
         this.setState({
           authenticated: true,
           username: resp.data.username

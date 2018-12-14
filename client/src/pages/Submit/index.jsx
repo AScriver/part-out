@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Input, FormBtn, TextArea, DropDown } from "../../components/Form";
 import "./index.css";
 import API from "../../utils/API";
+import {withRouter} from 'react-router'
 
 class Submit extends Component {
   state = {
@@ -36,12 +37,12 @@ class Submit extends Component {
       location: this.state.location,
       category: this.state.category
     }).then(resp => {
-      console.log(resp.data);
+      const {history} = this.props;
+        history.push('/')
     }).catch(function (error) {
       console.log(error.response);
     });
   }
-
 
   render() {
     return (
@@ -104,7 +105,7 @@ class Submit extends Component {
                     type="number"
                     placeholder="Year"
                     id="carYear"
-                    min="1990"
+                    min="1900"
                     max="2025"
                     required
                   />
@@ -148,9 +149,9 @@ class Submit extends Component {
                     onChange={this.handleInputChange}
                     name="category"
                     type="text"
-                    id="catecory"
+                    id="category"
                   >
-                    <option>category2</option>
+                    <option>Select a category</option>
                     <option>category3</option>
                     <option>category4</option>
                   </DropDown>
@@ -158,6 +159,7 @@ class Submit extends Component {
               </div>
               <FormBtn
                 type="submit"
+                disabled={!(this.state.title && this.state.desc && this.state.itemImg && this.state.price && this.state.carYear && this.state.carMake && this.state.carModel && this.state.location && this.state.category)}
                 className="button button-block"
                 onClick={this.handleFormSubmit}
               >
@@ -171,4 +173,4 @@ class Submit extends Component {
   }
 }
 
-export default Submit;
+export default withRouter(Submit);
