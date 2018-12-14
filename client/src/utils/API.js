@@ -16,5 +16,9 @@ export default {
     getUser: function () {
         console.log("==================GET USER====================");
         return axios.get('/api/user_data');
+    },
+    createPost: function (post){
+        console.log("==================CREATE POST====================");
+        return axios.post('/api/post', post);
     }
 }

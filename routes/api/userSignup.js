@@ -1,8 +1,14 @@
 const router = require('express').Router();
+
 const userController = require('../../controllers/userController');
 
-// /api/user_data
+// Matches with /api/signup
 router.route('/')
-    .get(userController.sendUserData)
+    .post(userController.createUser);
 
 module.exports = router;
+//
+//
+//
+//
+////

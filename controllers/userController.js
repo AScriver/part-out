@@ -7,13 +7,14 @@ var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = {
   createUser: function(req, res) {
+    console.log("================== CREATE USER - USERCONTROLLER =================")
     db.User.create(req.body)
       .then(dbModel => res.json("/login"))
       .catch(err => res.status(422).json(err));
   },
-  sendUserData: function(req, res) {
-    console.log(req.user);
-    console.log("================== req.user - UserController.js (sendUserData) =================")
-    res.json(req.user)
+  userLogin: function(req, res) {
+      if (req.isAuthenticated()) {
+        res.json(req.user)
+      }
   }
 };

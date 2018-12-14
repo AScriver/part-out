@@ -7,13 +7,17 @@ import {withRouter} from 'react-router'
 import "./index.css";
 
 class LogIn extends Component {
-  state = {
-    username: "",
-    password: "",
-    authenticated: null,
-    err: ""
+  constructor(props){
+    super(props);
+    this.state = {
+      username: "",
+      password: "",
+      authenticated: null,
+      err: ""
+    }
+  
   }
-
+  
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({

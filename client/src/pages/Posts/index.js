@@ -11,89 +11,11 @@ class Posts extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            posts: [{
-                title: "Rio Robles",
-                desc: "Cafe and Casino",
-                itemImg: "exampleimg",
-                price: 400.99,
-                carYear: 2001,
-                carMake: "Ford",
-                carModel: "Mustang",
-                category: "engine",
-                location: "Phoenix, Az"
-            }, {
-                title: "Rio Robles",
-                desc: "Cafe and Casino",
-                itemImg: "exampleimg",
-                price: 400.99,
-                carYear: 2001,
-                carMake: "Ford",
-                carModel: "Mustang",
-                category: "engine",
-                location: "Phoenix, Az"
-            }, {
-                title: "Rio Robles",
-                desc: "Cafe and Casino",
-                itemImg: "exampleimg",
-                price: 400.99,
-                carYear: 2001,
-                carMake: "Ford",
-                carModel: "Mustang",
-                category: "engine",
-                location: "Phoenix, Az"
-            }, {
-                title: "Rio Robles",
-                desc: "Cafe and Casino",
-                itemImg: "exampleimg",
-                price: 400.99,
-                carYear: 2001,
-                carMake: "Ford",
-                carModel: "Mustang",
-                category: "engine",
-                location: "Phoenix, Az"
-            }, {
-                title: "Rio Robles",
-                desc: "Cafe and Casino",
-                itemImg: "exampleimg",
-                price: 400.99,
-                carYear: 2001,
-                carMake: "Ford",
-                carModel: "Mustang",
-                category: "engine",
-                location: "Phoenix, Az"
-            }, {
-                title: "Rio Robles",
-                desc: "Cafe and Casino",
-                itemImg: "exampleimg",
-                price: 400.99,
-                carYear: 2001,
-                carMake: "Ford",
-                carModel: "Mustang",
-                category: "engine",
-                location: "Phoenix, Az"
-            }, {
-                title: "Rio Robles",
-                desc: "Cafe and Casino",
-                itemImg: "exampleimg",
-                price: 400.99,
-                carYear: 2001,
-                carMake: "Ford",
-                carModel: "Mustang",
-                category: "engine",
-                location: "Phoenix, Az"
-            }, {
-                title: "Rio Robles",
-                desc: "Cafe and Casino",
-                itemImg: "exampleimg",
-                price: 400.99,
-                carYear: 2001,
-                carMake: "Ford",
-                carModel: "Mustang",
-                category: "engine",
-                location: "Phoenix, Az"
-            }]
+            posts: []
         }
     }
+
+    
 
     render() {
         return (
@@ -110,7 +32,7 @@ class Posts extends Component {
                                         <p>{post.location}</p>
                                     </div>
                                     <div className="col-9">
-                                        <p><h3>{post.title} - {post.category}</h3></p>
+                                    <h3><p>{post.title} - {post.category}</p></h3>
                                         <p>{post.desc}</p>
                                         <div className="row">
                                             <div className="col-3">

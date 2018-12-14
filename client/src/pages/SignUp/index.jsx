@@ -32,11 +32,8 @@ class SignUp extends Component {
       username: this.state.username,
       password: this.state.password
     }).then(resp => {
-      // console.log(resp);
-      // window.location.replace(resp.data);
-      // window.history.pushState({}, null, resp.data);
       const {history} = this.props;
-        history.push('/login')
+      history.push(resp.data)
     }).catch(function (error) {
       if (error.response) {
         console.log(error.response);

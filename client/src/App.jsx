@@ -9,7 +9,7 @@ import Submit from './pages/Submit';
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
 import Posts from "./pages/Posts";
-import Test from "./pages/Test";
+// import Test from "./pages/Test";
 import "./App.css";
 
 import store from './state';
@@ -24,7 +24,7 @@ class App extends Component {
           <Navbar />
           <NavbarFix />
           <Switch>
-            <Route exact path="/" component={AuthRoute(Test)} />
+            <Route exact path="/" component={AuthRoute(Posts)} />
             <Route exact path="/submit" component={AuthRoute(Submit)} />
             <Route exact path="/signup" component={AlreadyAuth(SignUp)} />
             <Route exact path="/login" component={AlreadyAuth(LogIn)} />

@@ -3,21 +3,17 @@ module.exports = function (sequelize, DataTypes) {
         title: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                len: [1]
-            }
         },
         desc: {
             type: DataTypes.TEXT,
             allowNull: false,
-            len: [1]
         },
         itemImg: {
             type: DataTypes.STRING,
             defaultValue: "default.png"
         },
         price: {
-            type: DataTypes.FLOAT
+            type: DataTypes.DOUBLE
         },
         carYear: {
             type: DataTypes.INTEGER
