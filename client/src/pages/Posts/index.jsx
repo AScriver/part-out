@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import Navbar from '../../components/Navbar';
-import NavbarFix from '../../components/NavbarFix';
 import Sidebar from '../../components/Sidebar';
+import API from '../../utils/API';
 import "./index.css";
 
 // Use url to search through database and update accordingly
@@ -15,12 +14,19 @@ class Posts extends Component {
         }
     }
 
-    
+    componentDidMount() {
+        API.getAllPosts()
+            .then(resp => {
+                this.setState({posts: resp.data})
+            }).catch(function (error) {
+                console.log(error);
+            });
+    }
+
 
     render() {
         return (
             <div>
-                <Navbar  user={this.props.user}/>
                 <div className="container-fluid">
                     <div className="row">
                         <Sidebar />
@@ -32,7 +38,7 @@ class Posts extends Component {
                                         <p>{post.location}</p>
                                     </div>
                                     <div className="col-9">
-                                    <h3><p>{post.title} - {post.category}</p></h3>
+                                        <h3><p>{post.title} - {post.category}</p></h3>
                                         <p>{post.desc}</p>
                                         <div className="row">
                                             <div className="col-3">
@@ -64,8 +70,8 @@ export default Posts;
 
                 // Will need to be passed down as props.
 
-/*Here, ShoppingList is a React component class, or React component type. 
-A component takes in parameters, called props (short for “properties”), 
+/*Here, ShoppingList is a React component class, or React component type.
+A component takes in parameters, called props (short for “properties”),
 and returns a hierarchy of views to display via the render method. */
 
 

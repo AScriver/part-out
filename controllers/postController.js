@@ -23,5 +23,13 @@ module.exports = {
       })
         .then(dbModel => res.json("/"))
         .catch(err => res.status(422).json(err));
+  },
+  getAllPosts: function(req, res) {
+    db.Post.findAll({
+      include: [db.User],
+      order: [['id', 'DESC']]
+    })
+      .then(dbPost => res.json(dbPost))
+      .catch(err => res.status(422).json(err))
   }
 };

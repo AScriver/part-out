@@ -13,12 +13,11 @@ export default {
         console.log(user);
         return axios.post('/api/login', user);
     },
-    getUser: function () {
-        console.log("==================GET USER====================");
-        return axios.get('/api/user_data');
-    },
     createPost: function (post){
         console.log("==================CREATE POST====================");
         return axios.post('/api/post', post);
+    },
+    getAllPosts: function() {
+        return axios.get('/api/post')
     }
 }
