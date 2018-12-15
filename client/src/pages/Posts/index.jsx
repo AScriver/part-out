@@ -4,7 +4,6 @@ import API from "../../utils/API";
 import "./index.css";
 
 // Use url to search through database and update accordingly
-
 class Posts extends Component {
   constructor(props) {
     super(props);
@@ -33,15 +32,14 @@ class Posts extends Component {
               {this.state.posts.map(post => (
                 <div
                   key={post.id}
-                  className="row posts-container no-gutters pb-0 mb-2"
-                  style={{ border: "1px solid black" }}
+                  className="row posts-container no-gutters pb-0 mb-3"
                 >
-                  <div className="col-3 my-auto">
-                    <img
+                  <div className="col-3 postImg" style={{ backgroundImage: `url("${post.itemImg}")`}}>
+                    {/* <img
                       className="img-fluid"
                       src={post.itemImg}
                       alt={post.title}
-                    />
+                    /> */}
                   </div>
                   <div className="userpost col-9 d-flex align-content-around flex-column">
                     <h3 className='mb-auto text-center'>
