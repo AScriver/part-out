@@ -31,5 +31,16 @@ module.exports = {
     })
       .then(dbPost => res.json(dbPost))
       .catch(err => res.status(422).json(err))
+  },
+  getPostBySearch: function(req, res) {
+    db.Post.findAll({
+      where: {
+        [Op.or]: [{carMake: req.body.make}, {carModel: req.body.model}, {carYear: req.body.year}]
+      },
+      include: [db.User],
+      order: [['id', 'DESC']]
+    })
+    .then(dbPost => res.json(dbPost))
+    .catch(err => res.status(422).json(err))
   }
 };

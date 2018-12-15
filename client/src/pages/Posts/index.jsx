@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import Sidebar from "../../components/Sidebar";
+import Sidebar from "../../components/Sidebar";
 import API from "../../utils/API";
 import "./index.css";
 
@@ -9,27 +9,56 @@ class Posts extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: []
+      posts: [],
+      carMake: "",
+      carModel: "",
+      carYear: 0
     };
   }
 
   componentDidMount() {
-    API.getAllPosts()
-      .then(resp => {
-        this.setState({ posts: resp.data });
+    if (this.state.carMake !== "") {
+      API.getAllPosts({
+        where: {
+          carMake: this.state.carMake,
+          carModel: this.state.carModel,
+          carYear: this.state.carYear
+        }
       })
-      .catch(function(error) {
-        console.log(error);
-      });
+        .then(resp => {
+          this.setState({ posts: resp.data });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    } else {
+      API.getAllPosts({})
+        .then(resp => {
+          this.setState({ posts: resp.data });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
   }
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
 
   render() {
     return (
       <div>
-        <div className="container">
+        <div className="container-fluid">
           <div className="row">
-            {/* <Sidebar /> */}
-            <div className="col-12">
+            <Sidebar
+              handleInputChange={this.handleInputChange}
+
+            />
+            <div className="col-8 offset-1">
               {this.state.posts.map(post => (
                 <div
                   key={post.id}
@@ -45,9 +74,9 @@ class Posts extends Component {
                   </div>
                   <div className="userpost col-9 d-flex align-content-around flex-column">
                     <h3 className='mb-auto text-center'>
-                        {post.title} - {post.category}
+                      {post.title} - {post.category}
                     </h3>
-                    <hr/>
+                    <hr />
                     <p className="my-auto mx-3"><span className="postLabel">Description: </span>{post.desc}</p>
                     <h6 className="my-auto mx-3"><span className="postLabel">Location: </span>{post.location}</h6>
                     <div className="row no-gutters mx-3 mb-0">
@@ -55,9 +84,9 @@ class Posts extends Component {
                         <p className="mb-0"><span className="postLabel">Price: </span>${post.price}</p>
                       </div>
                       <div className="row">
-                      <div className="col-12 my-auto">
-                        <p className="mb-0"><span className="postLabel">Fits: </span>{post.carYear} {post.carMake} {post.carModel}</p>
-                      </div>
+                        <div className="col-12 my-auto">
+                          <p className="mb-0"><span className="postLabel">Fits: </span>{post.carYear} {post.carMake} {post.carModel}</p>
+                        </div>
                       </div>
                     </div>
                   </div>
