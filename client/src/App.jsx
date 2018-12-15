@@ -28,7 +28,7 @@ class App extends Component {
             <Route exact path="/submit" component={AuthRoute(Submit)} />
             <Route exact path="/signup" component={AlreadyAuth(SignUp)} />
             <Route exact path="/login" component={AlreadyAuth(LogIn)} />
-            <Route exact path="/parts/:make?/:model?/:year?/:category?" component={AuthRoute(Posts)} />
+            <Route exact path="/search/:make?/:model?/:year?/:category?" component={AuthRoute(Posts)} />
             <Route component={NoMatch} />
           </Switch>
         </div>

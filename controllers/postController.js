@@ -33,9 +33,46 @@ module.exports = {
       .catch(err => res.status(422).json(err))
   },
   getPostBySearch: function(req, res) {
+    console.log("post search")
     db.Post.findAll({
       where: {
-        [Op.or]: [{carMake: req.body.make}, {carModel: req.body.model}, {carYear: req.body.year}]
+        [Op.or]: [{carMake: req.params.carMake}, {carModel: req.params.carModel}, {carYear: req.params.carYear}]
+      },
+      include: [db.User],
+      order: [['id', 'DESC']]
+    })
+    .then(dbPost => res.json(dbPost))
+    .catch(err => res.status(422).json(err))
+  },
+  getPostByMake: function(req, res) {
+    db.Post.findAll({
+      where: {
+        carMake: req.params.carMake
+      },
+      include: [db.User],
+      order: [['id', 'DESC']]
+    })
+    .then(dbPost => res.json(dbPost))
+    .catch(err => res.status(422).json(err))
+  },
+  getPostByMakeModel: function(req, res) {
+    db.Post.findAll({
+      where: {
+        carMake: req.params.carMake,
+        carModel: req.params.carModel
+      },
+      include: [db.User],
+      order: [['id', 'DESC']]
+    })
+    .then(dbPost => res.json(dbPost))
+    .catch(err => res.status(422).json(err))
+  },
+  getPostByMakeModelYear: function(req, res) {
+    db.Post.findAll({
+      where: {
+        carMake: req.params.carMake,
+        carModel: req.params.carModel,
+        carYear: req.params.carYear
       },
       include: [db.User],
       order: [['id', 'DESC']]

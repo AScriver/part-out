@@ -1,10 +1,10 @@
 import React from "react";
-import { Input } from "../Form";
+import { Input, FormBtn } from "../Form";
+import "./index.css";
 
 function Sidebar(props) {
     return (
-        <div className="col-2">
-            <div className="form">
+            <div className="sidebar-container">
                 <p>Search Posts: </p>
                 <div className="field-wrap">
                     <Input
@@ -33,8 +33,11 @@ function Sidebar(props) {
                         placeholder="Year"
                     />
                 </div>
+                <FormBtn
+                    className="button button-block"
+                    // disabled={!(props.carMake && props.carModel && props.carYear)}
+                    onClick={props.handleFormSubmit}> Search </FormBtn>
             </div>
-        </div>
     )
 }
 

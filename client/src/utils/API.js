@@ -19,5 +19,17 @@ export default {
     },
     getAllPosts: function() {
         return axios.get('/api/post')
+    },
+    getPostByMake: function(carMake) {
+        return axios.get('/api/post/' + carMake)
+    },
+    getPostByModel: function(carMake, carModel) {
+        return axios.get('/api/post/' + carMake + '/' + carModel)
+    },
+    getPostByYear: function(carMake, carModel, carYear) {
+        return axios.get('/api/post/' + carMake + '/' + carModel + '/' + carYear)
+    },
+    getPostById: function(id) {
+        return axios.get('/api/item/' + id);
     }
 }

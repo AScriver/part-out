@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Sidebar from "../../components/Sidebar";
 import API from "../../utils/API";
+import PostContainer from "../../components/PostContainer"
+import { withRouter } from 'react-router'
 import "./index.css";
 
 // Use url to search through database and update accordingly
@@ -16,29 +18,68 @@ class Posts extends Component {
   }
 
   componentDidMount() {
-    if (this.state.carMake !== "") {
-      API.getAllPosts({
-        where: {
-          carMake: this.state.carMake,
-          carModel: this.state.carModel,
-          carYear: this.state.carYear
-        }
+    this.loadPosts()
+  }
+
+  loadPosts = () => {
+    API.getAllPosts({})
+      .then(resp => {
+        this.setState({
+          posts: resp.data
+        });
       })
-        .then(resp => {
-          this.setState({ posts: resp.data });
-        })
-        .catch(function (error) {
-          console.log(error);
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+
+  loadPostMake = () => {
+    API.getPostByMake(this.state.carMake)
+      .then(resp => {
+        this.setState({
+          posts: resp.data,
+          carMake: ""
         });
-    } else {
-      API.getAllPosts({})
-        .then(resp => {
-          this.setState({ posts: resp.data });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  loadPostMakeModel = () => {
+    API.getPostByMakeModel(this.state.carMake, this.state.carModel)
+      .then(resp => {
+        // const {history} = this.props;
+        // history.push('/search/' + this.state.carMake + '/' + this.state.carModel)
+
+        this.setState({
+          posts: resp.data,
+          carMake: "",
+          carModel: ""
         })
-        .catch(function (error) {
-          console.log(error);
-        });
-    }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  loadPostMakeModelYear = () => {
+    API.getPostByMakeModelYear(this.state.carMake, this.state.carModel, this.state.carYear)
+      .then(resp => {
+        // const {history} = this.props;
+        // history.push('/search/' + this.state.carMake + '/' + this.state.carModel + '/' + this.state.carYear)
+
+        this.setState({
+          posts: resp.data,
+          carMake: "",
+          carModel: "",
+          carYear: 0
+        })
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   handleInputChange = event => {
@@ -48,47 +89,34 @@ class Posts extends Component {
     });
   };
 
+  handleFormSubmit = event => {
+    event.preventDefault();
+    console.log("yee")
+      if (this.state.carMake !== "") {
+        this.loadPostMake();
+      } else if (this.state.carMake !== "" && this.state.carModel !== "") {
+        this.loadPostMakeModel();
+      } else if (this.state.carMake !== "" && this.state.carModel !== "" && this.state.carYear !== 0) {
+        this.loadPostMakeModelYear();
+      } else {
+        console.log("form submit broke lmao")
+    }
+  }
+
   render() {
     return (
       <div>
         <div className="container-fluid">
           <div className="row">
-            <Sidebar
-              handleInputChange={this.handleInputChange}
-
-            />
+            <div className="col-2">
+              <Sidebar
+                handleInputChange={this.handleInputChange}
+                handleFormSubmit={this.handleFormSubmit}
+              />
+            </div>
             <div className="col-8 offset-1">
               {this.state.posts.map(post => (
-                <div
-                  key={post.id}
-                  className="row posts-container no-gutters pb-0 mb-3"
-                >
-                  <div className="col-3 postImg" style={{ backgroundImage: `url("${post.itemImg}")`}}>
-                    {/* <img
-                      className="img-fluid"
-                      src={post.itemImg}
-                      alt={post.title}
-                    /> */}
-                  </div>
-                  <div className="userpost col-9 d-flex align-content-around flex-column">
-                    <h3 className='mb-auto text-center'>
-                      {post.title} - {post.category}
-                    </h3>
-                    <hr />
-                    <p className="my-auto mx-3"><span className="postLabel">Description: </span>{post.desc}</p>
-                    <h6 className="my-auto mx-3"><span className="postLabel">Location: </span>{post.location}</h6>
-                    <div className="row no-gutters mx-3 mb-0">
-                      <div className="col-12 my-auto">
-                        <p className="mb-0"><span className="postLabel">Price: </span>${post.price}</p>
-                      </div>
-                      <div className="row">
-                        <div className="col-12 my-auto">
-                          <p className="mb-0"><span className="postLabel">Fits: </span>{post.carYear} {post.carMake} {post.carModel}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <PostContainer post={post} />
               ))}
             </div>
           </div>
@@ -98,4 +126,4 @@ class Posts extends Component {
   }
 }
 
-export default Posts;
+export default withRouter(Posts);
