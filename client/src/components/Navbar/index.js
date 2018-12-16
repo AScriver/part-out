@@ -1,9 +1,6 @@
-import React, {
-    Component
-} from 'react';
-import {
-    Link
-} from "react-router-dom";
+import React, {Component} from 'react';
+import {Link} from "react-router-dom";
+import {connect} from 'react-redux'
 
 class Navbar extends Component {
     render() {
@@ -14,7 +11,7 @@ class Navbar extends Component {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav nav-pills nav-fill">
                     <li className="nav-item">
-                            <Link to="/" className="nav-link">{this.props.user}</Link>
+                            <Link to="/" className="nav-link">{this.props.username}3</Link>
                         </li>
                         {/* <li className="nav-item">
                             <Link to="/" className="nav-link"> My Parts </Link>
@@ -42,4 +39,12 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar;
+
+
+const mapStateToProps = state => {
+    return {
+      username: state.auth.username
+    };
+  };
+
+export default connect(mapStateToProps)(Navbar);

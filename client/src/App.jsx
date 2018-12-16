@@ -9,16 +9,13 @@ import Submit from './pages/Submit';
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
 import Posts from "./pages/Posts";
+import User from "./pages/User"
 // import Test from "./pages/Test";
 import "./App.css";
 
-import store from './state';
-import { Provider } from "react-redux";
-
-class App extends Component {
+class App extends Component {  
   render() {
     return (
-      <Provider store={store}>
       <Router>
         <div>
           <Navbar />
@@ -28,12 +25,12 @@ class App extends Component {
             <Route exact path="/submit" component={AuthRoute(Submit)} />
             <Route exact path="/signup" component={AlreadyAuth(SignUp)} />
             <Route exact path="/login" component={AlreadyAuth(LogIn)} />
-            <Route exact path="/search/:carMake?/:carModel?/:carYear?/:category?" component={AuthRoute(Posts)} />
+            <Route exact path="/user/:userId" component={AuthRoute(User)} />
+            <Route exact path="/search/:carMake?/:carModel?/:carYear?" component={AuthRoute(Posts)} />
             <Route component={NoMatch} />
           </Switch>
         </div>
         </Router>
-      </Provider>
     );
   }
 }
