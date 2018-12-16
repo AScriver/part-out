@@ -1,9 +1,4 @@
 const db = require("../models");
-const passport = require("../config/passport");
-const multer = require('multer');
-const path = require('path');
-var isAuthenticated = require("../config/middleware/isAuthenticated");
-
 
 module.exports = {
   createPost: function(req, res) {
@@ -32,19 +27,10 @@ module.exports = {
       .then(dbPost => res.json(dbPost))
       .catch(err => res.status(422).json(err))
   },
-  getPostBySearch: function(req, res) {
-    console.log("post search")
-    db.Post.findAll({
-      where: {
-        [Op.or]: [{carMake: req.params.carMake}, {carModel: req.params.carModel}, {carYear: req.params.carYear}]
-      },
-      include: [db.User],
-      order: [['id', 'DESC']]
-    })
-    .then(dbPost => res.json(dbPost))
-    .catch(err => res.status(422).json(err))
-  },
   getPostByMake: function(req, res) {
+    console.log("==================GET POST BY MAKE BACKEND==================")
+    // console.log(req);
+    console.log(req.params)
     db.Post.findAll({
       where: {
         carMake: req.params.carMake
@@ -56,6 +42,7 @@ module.exports = {
     .catch(err => res.status(422).json(err))
   },
   getPostByMakeModel: function(req, res) {
+    console.log("==================GET POST BY MAKE AND MODEL BACKEND==================")
     db.Post.findAll({
       where: {
         carMake: req.params.carMake,
@@ -68,6 +55,7 @@ module.exports = {
     .catch(err => res.status(422).json(err))
   },
   getPostByMakeModelYear: function(req, res) {
+    console.log("==================GET POST BY MAKE MODEL YEAR BACKEND==================")
     db.Post.findAll({
       where: {
         carMake: req.params.carMake,

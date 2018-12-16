@@ -8,12 +8,13 @@ router.route('/')
     .get(postController.getAllPosts);
 
 router.route('/:carMake')
-    .get(postController.getPostBySearch);
+    .get(postController.getPostByMake)
 
 router.route('/:carMake/:carModel')
-    .get(postController.getPostBySearch)
+    .get(postController.getPostByMakeModel)
 
 router.route('/:carMake/:carModel/:carYear')
-    .get(postController.getPostBySearch)
+    .get(postController.getPostByMakeModelYear)
 
 module.exports = router;
+//

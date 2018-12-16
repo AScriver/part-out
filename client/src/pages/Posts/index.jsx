@@ -18,7 +18,28 @@ class Posts extends Component {
   }
 
   componentDidMount() {
-    this.loadPosts()
+    const { carMake, carModel, carYear } = this.props.match.params;
+    if( carMake && carModel && carYear ){
+      console.log("component mounted, calling loadPostsMakeModelYear");
+      console.log(carMake, carModel, carYear);
+      this.loadPostsMakeModelYear(carMake, carModel, carYear);
+    } else if ( carMake && carModel ){
+      console.log("component mounted, calling loadPostsMakeModel");
+      console.log(carMake, carModel, carYear);
+      this.loadPostsMakeModel(carMake, carModel);
+    } else if ( carMake ){
+      console.log("component mounted, calling loadPostsMake");
+      console.log(carMake, carModel, carYear);
+      this.loadPostsMake(carMake);
+    } else {
+      console.log("component mounted, calling loadPosts");
+      console.log(carMake, carModel, carYear);
+      this.loadPosts();
+    }
+  }
+
+  componentDidUpdate() {
+    
   }
 
   loadPosts = () => {
@@ -34,9 +55,10 @@ class Posts extends Component {
   }
 
 
-  loadPostMake = () => {
-    API.getPostByMake(this.state.carMake)
+  loadPostsMake = (carMake) => {
+    API.getPostByMake(carMake)
       .then(resp => {
+        console.log("loadPostsMake success");
         this.setState({
           posts: resp.data,
           carMake: ""
@@ -47,12 +69,10 @@ class Posts extends Component {
       });
   }
 
-  loadPostMakeModel = () => {
-    API.getPostByMakeModel(this.state.carMake, this.state.carModel)
+  loadPostsMakeModel = (carMake, carModel) => {
+    API.getPostByMakeModel(carMake, carModel)
       .then(resp => {
-        // const {history} = this.props;
-        // history.push('/search/' + this.state.carMake + '/' + this.state.carModel)
-
+        console.log("loadPostsMakeModel success");
         this.setState({
           posts: resp.data,
           carMake: "",
@@ -64,12 +84,10 @@ class Posts extends Component {
       });
   }
 
-  loadPostMakeModelYear = () => {
-    API.getPostByMakeModelYear(this.state.carMake, this.state.carModel, this.state.carYear)
+  loadPostsMakeModelYear = (carMake, carModel, carYear) => {
+    API.getPostByMakeModelYear(carMake, carModel, carYear)
       .then(resp => {
-        // const {history} = this.props;
-        // history.push('/search/' + this.state.carMake + '/' + this.state.carModel + '/' + this.state.carYear)
-
+        console.log("loadPostsMakeModelYear success");
         this.setState({
           posts: resp.data,
           carMake: "",
@@ -84,6 +102,7 @@ class Posts extends Component {
 
   handleInputChange = event => {
     const { name, value } = event.target;
+    console.log("input Changed " + name + " " + value)
     this.setState({
       [name]: value
     });
@@ -91,15 +110,17 @@ class Posts extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    console.log("yee")
-      if (this.state.carMake !== "") {
-        this.loadPostMake();
-      } else if (this.state.carMake !== "" && this.state.carModel !== "") {
-        this.loadPostMakeModel();
-      } else if (this.state.carMake !== "" && this.state.carModel !== "" && this.state.carYear !== 0) {
-        this.loadPostMakeModelYear();
-      } else {
-        console.log("form submit broke lmao")
+    console.log("Handling form submit");
+    const { carMake, carModel, carYear } = this.state;
+    const { history } = this.props
+    if(carMake && carModel && carYear){
+      history.push('/search/' + carMake + '/' + carModel + '/' + carYear)
+    } else if ( carMake && carModel){
+      history.push('/search/' + carMake + '/' + carModel)
+    } else if ( carMake){
+      history.push('/search/' + carMake)
+    } else {
+      history.push('/')
     }
   }
 
