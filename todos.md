@@ -1,14 +1,13 @@
-- Routes for update and delete
+- Handle login errors!
 - user profiles
-- messaging system
-- validate post information
+- post detail page (comments?)
+- allow users to delete own postse
+- allow users to message eachother
+    -   new database table, from: ... to: ... context: ...
 - user picture uploads
-- post sorting
+- allow users to save by ID
+- store last know location and authentication status in local storage incase of refresh
+- validate post information
 - clean up this dumpster fire
-- search?
-- verify userss using other social media logins
-- Input area that allows user to search make, model, year -> sets those to the state(?)  and searches through the database accordingly.
-- navbar
-    - submit button,
-    - logout button
-    - link to user profile
+- verify users using other social media logins
+- allow users to search for other users

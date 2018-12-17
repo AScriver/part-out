@@ -13,8 +13,14 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   userLogin: function(req, res) {
+    console.log("==================USER LOGIN - USERCONTROLLER =================")
       if (req.isAuthenticated()) {
         res.json(req.user)
       }
+  },
+  userInfo: function(req, res) {
+    console.log("================== FIND USER - USERCONTROLLER =================")
+    db.User.findById(req.params.id)
+      .then(dbModel => res.json(dbModel, req.user))
   }
 };

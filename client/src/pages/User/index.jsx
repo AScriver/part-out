@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import PostContainer from "../../components/PostContainer"
-
-
-
-
-
+import API from '../../utils/API';
 // get posts where userid=...
 
 class User extends Component {
@@ -12,26 +8,36 @@ class User extends Component {
         super(props);
         this.state = {
             posts: [],
-            profileImg: ''
+            user: {}
         }
     }
+
+    componentDidMount(){
+        API.findUserById(this.props.match.params.id)
+            .then(res => {
+                console.log(res);
+                this.setState({posts: res.data})})
+            .catch(err => console.log(err));
+    }
+
 
     render() {
         return (
             <div>
-                <div className='container-fluid'>
+                
+                {/* <div className='container-fluid'>
                     <div className='row'>
                         <div className='col-8 offset-1'>
                             {this.state.posts.map(post => (
                                 <PostContainer post={post} />
                             ))}
-                            <h1>Meow</h1>
+                            <h1>No Posts To Show!</h1>
                         </div>
                         <div className='col-2'>
                             <h1>Robles</h1>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         )
     }

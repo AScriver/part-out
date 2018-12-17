@@ -13,6 +13,10 @@ export default {
         console.log(user);
         return axios.post('/api/login', user);
     },
+    findUserById: function(id){
+        console.log("==================GET USER BY ID FRONTEND====================");
+        return axios.get('api/user/' + id);
+    },
     createPost: function (post){
         console.log("==================CREATE POST FRONTEND====================");
         return axios.post('/api/post', post);

@@ -15,7 +15,7 @@ class Navbar extends Component {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav nav-pills nav-fill ml-auto">
                             <li className="nav-item">
-                                <Link to={`/user/${this.props.username}`} className="nav-link">Signed in as: {this.props.username}</Link>
+                                <Link to={`/user/${this.props.id}`} className="nav-link">Signed in as: {this.props.username}</Link>
                             </li>
                             <li className="nav-item">|</li>
                             {this.props.username ?
