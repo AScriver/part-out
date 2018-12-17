@@ -17,25 +17,25 @@ export default {
         console.log("==================CREATE POST FRONTEND====================");
         return axios.post('/api/post', post);
     },
-    getAllPosts: function() {
+    getAllPosts: function(cancelToken) {
         console.log("==================GET ALL POSTS FRONTEND====================");
-        return axios.get('/api/post')
+        return axios.get('/api/post', cancelToken)
     },
-    getPostByMake: function(carMake) {
+    getPostByMake: function(carMake, cancelToken) {
         console.log("==================GET POSTS BY MAKE FRONTEND====================");
         console.log(carMake)
-        return axios.get('/api/post/' + carMake)
+        return axios.get('/api/post/' + carMake, cancelToken)
     },
-    getPostByMakeModel: function(carMake, carModel) {
+    getPostByMakeModel: function(carMake, carModel, cancelToken) {
         console.log("==================GET POSTS BY MAKE MODEL FRONTEND====================");
-        return axios.get('/api/post/' + carMake + '/' + carModel)
+        return axios.get('/api/post/' + carMake + '/' + carModel, cancelToken)
     },
-    getPostByMakeModelYear: function(carMake, carModel, carYear) {
+    getPostByMakeModelYear: function(carMake, carModel, carYear, cancelToken) {
         console.log("==================GET POSTS BY MAKE MODEL YEAR FRONTEND====================");
-        return axios.get('/api/post/' + carMake + '/' + carModel + '/' + carYear)
+        return axios.get('/api/post/' + carMake + '/' + carModel + '/' + carYear, cancelToken)
     },
-    getPostById: function(id) {
+    getPostById: function(id, cancelToken) {
         console.log("==================GET POST BY ID FRONTEND====================");
-        return axios.get('/api/item/' + id);
+        return axios.get('/api/item/' + id, cancelToken);
     }
 }

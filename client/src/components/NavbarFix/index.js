@@ -14,13 +14,13 @@ class NavbarFix extends Component {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav nav-pills nav-fill">
                     <li className="nav-item">
-                            <Link to="/" className="nav-link">{this.props.user}</Link>
+                            {/* <Link to="/" className="nav-link">{this.props.user}</Link> */}
                         </li>
                         <li className="nav-item">
-                            <Link to="/submit" className="nav-link"> /submit </Link>
+                            {/* <Link to="/submit" className="nav-link"> /submit </Link> */}
                         </li>
                         <li className="nav-item">
-                            <Link to="/" className="nav-link"> / </Link>
+                            {/* <Link to="/" className="nav-link"> / </Link> */}
                         </li>
                     </ul>
                 </div>

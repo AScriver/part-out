@@ -26,7 +26,7 @@ class App extends Component {
             <Route exact path="/signup" component={AlreadyAuth(SignUp)} />
             <Route exact path="/login" component={AlreadyAuth(LogIn)} />
             <Route exact path="/user/:userId" component={AuthRoute(User)} />
-            <Route exact path="/search/:carMake?/:carModel?/:carYear?" component={AuthRoute(Posts)} />
+            <Route exact path="/item/:itemId" component={AuthRoute(User)} />
             <Route component={NoMatch} />
           </Switch>
         </div>

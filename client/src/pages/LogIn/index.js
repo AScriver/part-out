@@ -98,7 +98,7 @@ class LogIn extends Component {
               onClick={this.handleFormSubmit}
               >Sign Up</FormBtn>
 
-              <FormBtn
+              {/* <FormBtn
               className="button button-block"
               onClick={(e)=>{
                 e.preventDefault();
@@ -112,7 +112,7 @@ class LogIn extends Component {
                 e.preventDefault();
                 this.props.logoutButton();
               }}
-              >Logout Mock</FormBtn>
+              >Logout Mock</FormBtn> */}
             
             </form>
   

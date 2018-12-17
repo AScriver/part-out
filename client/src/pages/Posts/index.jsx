@@ -3,6 +3,7 @@ import Sidebar from "../../components/Sidebar";
 import API from "../../utils/API";
 import PostContainer from "../../components/PostContainer"
 import { withRouter } from 'react-router'
+import axios from 'axios';
 import "./index.css";
 
 // Use url to search through database and update accordingly
@@ -13,132 +14,89 @@ class Posts extends Component {
       posts: [],
       carMake: "",
       carModel: "",
-      carYear: 0
+      carYear: "",
     };
+    this.signal = axios.CancelToken.source();
   }
 
   componentDidMount() {
-    const { carMake, carModel, carYear } = this.props.match.params;
-    if( carMake && carModel && carYear ){
-      console.log("component mounted, calling loadPostsMakeModelYear");
-      console.log(carMake, carModel, carYear);
-      this.loadPostsMakeModelYear(carMake, carModel, carYear);
-    } else if ( carMake && carModel ){
-      console.log("component mounted, calling loadPostsMakeModel");
-      console.log(carMake, carModel, carYear);
-      this.loadPostsMakeModel(carMake, carModel);
-    } else if ( carMake ){
-      console.log("component mounted, calling loadPostsMake");
-      console.log(carMake, carModel, carYear);
-      this.loadPostsMake(carMake);
-    } else {
-      console.log("component mounted, calling loadPosts");
-      console.log(carMake, carModel, carYear);
-      this.loadPosts();
-    }
-  }
-
-  componentDidUpdate() {
-    
-  }
-
-  loadPosts = () => {
-    API.getAllPosts({})
+    API.getAllPosts({
+      cancelToken: this.signal.token,
+    })
       .then(resp => {
         this.setState({
-          posts: resp.data
+          posts: resp.data,
         });
       })
       .catch(function (error) {
-        console.log(error);
+        if (axios.isCancel(error)) {
+          console.log('Error: ', error.message); // => prints: Api is being canceled
+        } else {
+          console.log(error)
+        }
       });
   }
 
-
-  loadPostsMake = (carMake) => {
-    API.getPostByMake(carMake)
-      .then(resp => {
-        console.log("loadPostsMake success");
-        this.setState({
-          posts: resp.data,
-          carMake: ""
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-
-  loadPostsMakeModel = (carMake, carModel) => {
-    API.getPostByMakeModel(carMake, carModel)
-      .then(resp => {
-        console.log("loadPostsMakeModel success");
-        this.setState({
-          posts: resp.data,
-          carMake: "",
-          carModel: ""
-        })
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-
-  loadPostsMakeModelYear = (carMake, carModel, carYear) => {
-    API.getPostByMakeModelYear(carMake, carModel, carYear)
-      .then(resp => {
-        console.log("loadPostsMakeModelYear success");
-        this.setState({
-          posts: resp.data,
-          carMake: "",
-          carModel: "",
-          carYear: 0
-        })
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+  componentWillUnmount() {
+    this.signal.cancel('Api is being canceled')
   }
 
   handleInputChange = event => {
     const { name, value } = event.target;
-    console.log("input Changed " + name + " " + value)
     this.setState({
       [name]: value
     });
+
+
   };
 
   handleFormSubmit = event => {
     event.preventDefault();
-    console.log("Handling form submit");
-    const { carMake, carModel, carYear } = this.state;
-    const { history } = this.props
-    if(carMake && carModel && carYear){
-      history.push('/search/' + carMake + '/' + carModel + '/' + carYear)
-    } else if ( carMake && carModel){
-      history.push('/search/' + carMake + '/' + carModel)
-    } else if ( carMake){
-      history.push('/search/' + carMake)
-    } else {
-      history.push('/')
-    }
+    console.log('Form Submitted')
   }
 
+
+
+
+
   render() {
+    const filterMake = this.state.posts.filter(post => post.carMake.toLowerCase().indexOf(this.state.carMake.toLowerCase()) !== -1)
+    const filterModel = filterMake.filter(post => post.carModel.toLowerCase().indexOf(this.state.carModel.toLowerCase()) !== -1)
+    const filterYear = filterModel.filter(post => post.carYear.toString().indexOf(this.state.carYear.toString()) !== -1 )
+    const {carMake, carModel, carYear } = this.state;
     return (
       <div>
         <div className="container-fluid">
           <div className="row">
             <div className="col-2">
               <Sidebar
+                carMake={this.state.carMake}
+                carModel={this.state.carModel}
+                carYear={this.state.carYear}
                 handleInputChange={this.handleInputChange}
-                handleFormSubmit={this.handleFormSubmit}
+                handleFormSubmit={(event) => {
+                  event.preventDefault()
+                  this.handleFormSubmit(event);
+                }}
               />
             </div>
             <div className="col-8 offset-1">
-              {this.state.posts.map(post => (
-                <PostContainer post={post} />
-              ))}
+              {(carMake && carModel && carYear) ? 
+              filterYear.map(post => (
+                <PostContainer post={post} key={post.id} />
+              )) :
+              (carMake && carModel) ?
+              filterModel.map(post => (
+                <PostContainer post={post} key={post.id} />
+              )) :
+              (carMake) ?
+              filterMake.map(post => (
+                <PostContainer post={post} key={post.id} />
+              )) :
+              this.state.posts.map(post => (
+                <PostContainer post={post} key={post.id} />
+            ))
+            }
             </div>
           </div>
         </div>
@@ -146,5 +104,6 @@ class Posts extends Component {
     );
   }
 }
+
 
 export default withRouter(Posts);
