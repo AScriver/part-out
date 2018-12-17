@@ -11,3 +11,7 @@
 - clean up this dumpster fire
 - verify users using other social media logins
 - allow users to search for other users
+
+- forgot password
+- reports
+- notifications

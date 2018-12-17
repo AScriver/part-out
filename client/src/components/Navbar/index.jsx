@@ -14,10 +14,15 @@ class Navbar extends Component {
                     <Link to="/" className="navbar-brand"> PartOut </Link>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav nav-pills nav-fill ml-auto">
-                            <li className="nav-item">
-                                <Link to={`/user/${this.props.id}`} className="nav-link">Signed in as: {this.props.username}</Link>
-                            </li>
-                            <li className="nav-item">|</li>
+                            {this.props.username ?
+                                <li className="nav-item">
+                                    <Link to={`/user/${this.props.username}`} className="nav-link">Signed in as: {this.props.username}</Link>
+                                </li>
+                                :
+                                ""
+                            }
+
+                            
                             {this.props.username ?
                                 <li className="nav-item">
                                     <Link to="/submit" className="nav-link">Submit</Link>
@@ -25,7 +30,7 @@ class Navbar extends Component {
                                 :
                                 ""
                             }
-                            <li className="nav-item">|</li>
+                            
                             {this.props.username ?
                                 <li className="nav-item">
                                     <Link to="/logout" className="nav-link">Logout</Link>
@@ -35,9 +40,9 @@ class Navbar extends Component {
                                     <Link to="/login" className="nav-link">Login</Link>
                                 </li>
                             }
-                            <li className="nav-item">|</li>
+                        
                             {this.props.username ?
-                               ""
+                                ""
                                 :
                                 <li className="nav-item">
                                     <Link to="/signup" className="nav-link">Signup</Link>

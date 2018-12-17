@@ -3,7 +3,10 @@ import { signinReq, signoutReq, updateAuth } from "./actions";
 
 const defaultState = {
   authenticated: false,
-  username: null
+  email: null,
+  username: null,
+  profileImg: null,
+  userId: null
 };
 
 const authReducer = handleActions({
@@ -11,6 +14,8 @@ const authReducer = handleActions({
     return {
       username: action.payload.username,
       authenticated: action.payload.authenticated,
+      email: action.payload.email,
+      profileImg: action.payload.profileImg
     };
   },
   [signoutReq]: (state, action) => defaultState,

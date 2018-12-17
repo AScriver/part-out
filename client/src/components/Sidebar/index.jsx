@@ -12,7 +12,7 @@ function Sidebar(props) {
                         onChange={props.handleInputChange}
                         name="carMake"
                         type="text"
-                        placeholder={props.carMake ? props.carMake : "Manufacturer"}
+                        placeholder="Manufacturer"
                     />
                 </div>
                 <div className="field-wrap">
@@ -22,17 +22,17 @@ function Sidebar(props) {
                         disabled={!props.carMake}
                         name="carModel"
                         type="text"
-                        placeholder={props.carModel ? props.carModel : "Model"}
+                        placeholder="Model"
                     />
                 </div>
                 <div className="field-wrap">
                     <Input
-                        disabled={!props.carModel}
+                        disabled={!props.carModel || !props.carMake}
                         value={props.carYear}
                         onChange={props.handleInputChange}
                         name="carYear"
                         type="text"
-                        placeholder={props.carYear ? props.carYear : "year"}
+                        placeholder="Year"
                     />
                 </div>
                 {/* <FormBtn

@@ -13,11 +13,16 @@ class LogIn extends Component {
       username: "",
       password: "",
       authenticated: null,
+      email: "",
+      profileImg: "",
       err: ""
     }
-  
   }
   
+  componentWillUnmount(){
+
+  }
+
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -97,22 +102,6 @@ class LogIn extends Component {
               disabled={!(this.state.password && this.state.username)}
               onClick={this.handleFormSubmit}
               >Sign Up</FormBtn>
-
-              {/* <FormBtn
-              className="button button-block"
-              onClick={(e)=>{
-                e.preventDefault();
-                this.handleFormSubmit;
-                
-              }}>Signin Mock</FormBtn>
-
-              <FormBtn
-              className="button button-block"
-              onClick={(e) => {
-                e.preventDefault();
-                this.props.logoutButton();
-              }}
-              >Logout Mock</FormBtn> */}
             
             </form>
   

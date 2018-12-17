@@ -8,23 +8,24 @@ class User extends Component {
         super(props);
         this.state = {
             posts: [],
-            user: {}
+            user: []
         }
     }
 
     componentDidMount(){
-        API.findUserById(this.props.match.params.id)
+        API.findUserByUsername(this.props.match.params.username)
             .then(res => {
                 console.log(res);
-                this.setState({posts: res.data})})
+                this.setState({user: res.data})})
             .catch(err => console.log(err));
     }
 
 
     render() {
+
         return (
             <div>
-                
+                <div>{console.log(JSON.stringify(this.state.user))}</div>
                 {/* <div className='container-fluid'>
                     <div className='row'>
                         <div className='col-8 offset-1'>
