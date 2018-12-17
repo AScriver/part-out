@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
+import { signoutReq } from "../../state/auth/actions";
 
 
 // These look really hacky, but they're just used to show/hide nav links depending
@@ -16,13 +17,11 @@ class Navbar extends Component {
                         <ul className="navbar-nav nav-pills nav-fill ml-auto">
                             {this.props.username ?
                                 <li className="nav-item">
-                                    <Link to={`/user/${this.props.username}`} className="nav-link">Signed in as: {this.props.username}</Link>
+                                    <Link to={`/user/${this.props.id}`} className="nav-link">Signed in as: {this.props.username}</Link>
                                 </li>
                                 :
                                 ""
                             }
-
-                            
                             {this.props.username ?
                                 <li className="nav-item">
                                     <Link to="/submit" className="nav-link">Submit</Link>
@@ -30,17 +29,15 @@ class Navbar extends Component {
                                 :
                                 ""
                             }
-                            
                             {this.props.username ?
                                 <li className="nav-item">
-                                    <Link to="/logout" className="nav-link">Logout</Link>
+                                    <Link to="/" onClick={() => this.props.logoutButton()} className="nav-link">Logout</Link>
                                 </li>
                                 :
                                 <li className="nav-item">
                                     <Link to="/login" className="nav-link">Login</Link>
                                 </li>
                             }
-                        
                             {this.props.username ?
                                 ""
                                 :
@@ -48,7 +45,6 @@ class Navbar extends Component {
                                     <Link to="/signup" className="nav-link">Signup</Link>
                                 </li>
                             }
-
                         </ul>
                     </div>
                 </nav>
@@ -61,8 +57,17 @@ class Navbar extends Component {
 
 const mapStateToProps = state => {
     return {
+        id: state.auth.id,
         username: state.auth.username
     };
 };
 
-export default connect(mapStateToProps)(Navbar);
+function mapDispatchToProps(dispatch){
+    return{
+        logoutButton(){
+            dispatch(signoutReq());
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

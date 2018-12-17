@@ -3,6 +3,7 @@
   }
   html {
     overflow-y: scroll;
+    overflow-x: hidden;
   }
   body {
     background: #c1bdba;
@@ -152,6 +153,10 @@
   .forgot {
     margin-top: -20px;
     text-align: right;
+  }
+  .no-acc {
+    margin-top: -20px;
+    text-align: left;
   }
   
   .incorrect{

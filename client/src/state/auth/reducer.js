@@ -6,7 +6,7 @@ const defaultState = {
   email: null,
   username: null,
   profileImg: null,
-  userId: null
+  id: null
 };
 
 const authReducer = handleActions({
@@ -15,7 +15,8 @@ const authReducer = handleActions({
       username: action.payload.username,
       authenticated: action.payload.authenticated,
       email: action.payload.email,
-      profileImg: action.payload.profileImg
+      profileImg: action.payload.profileImg,
+      id: action.payload.id
     };
   },
   [signoutReq]: (state, action) => defaultState,

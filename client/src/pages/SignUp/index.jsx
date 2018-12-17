@@ -25,8 +25,8 @@ class SignUp extends Component {
     event.preventDefault();
     if (this.state.password !== this.state.confirm){
       this.setState({err: "Passwords do not match!"});
-      return;
     }
+
     API.signup({
       email: this.state.email,
       username: this.state.username,
@@ -34,7 +34,7 @@ class SignUp extends Component {
     }).then(resp => {
       const {history} = this.props;
       history.push(resp.data)
-    }).catch(function (error) {
+    }).catch(error => {
       if (error.response) {
         console.log(error.response);
       } else if (error.request) {

@@ -13,9 +13,9 @@ export default {
         console.log(user);
         return axios.post('/api/login', user);
     },
-    findUserByUsername: function(username){
+    findUserById: function(id){
         console.log("==================GET USER BY ID FRONTEND====================");
-        return axios.get('/api/user/' + username);
+        return axios.get('/api/user/' + id);
     },
     createPost: function (post){
         console.log("==================CREATE POST FRONTEND====================");

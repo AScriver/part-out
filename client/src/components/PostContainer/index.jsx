@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
+import { Link } from "react-router-dom";
 
 class PostContainer extends Component {
   render() {
-    const {history} = this.props;
     return (
       <div
         className="row posts-container no-gutters pb-0 mb-3"
-        onClick={() => history.push('/item/' + this.props.post.id)}
+        // onClick={() => history.push('/item/' + this.props.post.id)}
       >
         <div className="col-3 postImg" style={{ backgroundImage: `url("${this.props.post.itemImg}")` }}>
         </div>
@@ -17,7 +17,7 @@ class PostContainer extends Component {
             {this.props.post.title} - {this.props.post.category}
           </h3>
           <hr />
-          <p className="my-auto mx-3"><span className="postLabel">Description: </span>{this.props.post.desc}</p>
+          <p className="my-auto mx-3"><span className="postLabel"><Link to={`/user/${this.props.post.User.id}`}>{this.props.post.User.username}</Link></span></p>
           <h6 className="my-auto mx-3"><span className="postLabel">Location: </span>{this.props.post.location}</h6>
 
           <div className="row no-gutters mx-3 mb-0">
