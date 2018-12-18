@@ -14,7 +14,8 @@ router.route('/:carMake/:carModel')
     .get(postController.getPostByMakeModel)
 
 router.route('/:carMake/:carModel/:carYear')
-    .get(postController.getPostByMakeModelYear)
+    .get(postController.getPostByMakeModelYear);
+
 
 module.exports = router;
 //

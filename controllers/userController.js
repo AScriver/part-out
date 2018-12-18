@@ -21,7 +21,7 @@ module.exports = {
   userInfo: function(req, res) {
     console.log("================== FIND USER - USERCONTROLLER =================")
     console.log(req.params);
-    db.User.findOne({where: {username: req.params.username}})
+    db.User.findOne({where: {id: req.params.id}})
       .then(dbModel => res.json(dbModel))
   }
 };

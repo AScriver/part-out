@@ -10,7 +10,7 @@ class User extends Component {
     this.state = {
       posts: [],
       user: [],
-      rerender: this.props.match.params.id
+      
     };
  
   }
@@ -22,7 +22,6 @@ class User extends Component {
         this.setState({ user: res.data });
       })
       .catch(err => console.log(err));
-      this.setState({refresh: !this.state.refresh})
   }
 
   render() {

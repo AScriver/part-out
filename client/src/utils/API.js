@@ -38,8 +38,8 @@ export default {
         console.log("==================GET POSTS BY MAKE MODEL YEAR FRONTEND====================");
         return axios.get('/api/post/' + carMake + '/' + carModel + '/' + carYear, cancelToken)
     },
-    getPostById: function(id, cancelToken) {
+    getPostById: function(id) {
         console.log("==================GET POST BY ID FRONTEND====================");
-        return axios.get('/api/item/' + id, cancelToken);
+        return axios.get('/api/item/' + id);
     }
 }

@@ -151,9 +151,17 @@ class Submit extends Component {
                     type="text"
                     id="category"
                   >
-                    <option>Select a category</option>
-                    <option>category3</option>
-                    <option>category4</option>
+                    <option disabled>Select a category</option>
+                    <option>Brakes</option>
+                    <option>Drivetrain</option>
+                    <option>Engine</option>
+                    <option>Exhaust</option>
+                    <option>Exterior</option>
+                    <option>Intake</option>
+                    <option>Interior</option>
+                    <option>Lights</option>
+                    <option>Suspension</option>
+                    <option>Wheels & Tires</option>
                   </DropDown>
                 </div>
               </div>

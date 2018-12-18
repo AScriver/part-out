@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
 import { signoutReq } from "../../state/auth/actions";
+import UserContainer from "../UserContainer";
 
 
 // These look really hacky, but they're just used to show/hide nav links depending
@@ -15,13 +16,6 @@ class Navbar extends Component {
                     <Link to="/" className="navbar-brand"> PartOut </Link>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav nav-pills nav-fill ml-auto">
-                            {this.props.username ?
-                                <li className="nav-item">
-                                    <Link to={`/user/${this.props.id}`} className="nav-link">Signed in as: {this.props.username}</Link>
-                                </li>
-                                :
-                                ""
-                            }
                             {this.props.username ?
                                 <li className="nav-item">
                                     <Link to="/submit" className="nav-link">Submit</Link>
@@ -44,6 +38,14 @@ class Navbar extends Component {
                                 <li className="nav-item">
                                     <Link to="/signup" className="nav-link">Signup</Link>
                                 </li>
+                            }
+                            {this.props.username ?
+                                <li className="nav-item ml-2">
+                                    <UserContainer user={this.props} />
+                                    {/* <Link to={`/user/${this.props.id}`} className="nav-link">Signed in as: {this.props.username}</Link> */}
+                                </li>
+                                :
+                                ""
                             }
                         </ul>
                     </div>

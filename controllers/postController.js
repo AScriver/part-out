@@ -27,6 +27,17 @@ module.exports = {
       .then(dbPost => res.json(dbPost))
       .catch(err => res.status(422).json(err))
   },
+  getPostsById: function(req, res){
+    db.Post.findOne({
+      where: {
+        id: req.params.id
+      },
+      inclide: [db.User],
+      order: [['id', 'DESC']]
+    })
+      .then(dbPost => res.json(dbPost))
+      .catch(err => res.status(422).json(err))
+  },
   getPostByMake: function(req, res) {
     console.log("==================GET POST BY MAKE BACKEND==================")
     // console.log(req);

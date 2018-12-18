@@ -9,7 +9,8 @@ import Submit from './pages/Submit';
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
 import Posts from "./pages/Posts";
-import User from "./pages/User"
+import User from "./pages/User";
+import Item from "./pages/Item"
 // import Test from "./pages/Test";
 import "./App.css";
 
@@ -26,7 +27,7 @@ class App extends Component {
             <Route exact path="/signup" component={AlreadyAuth(SignUp)} />
             <Route exact path="/login" component={AlreadyAuth(LogIn)} />
             <Route exact path="/user/:id" component={AuthRoute(User)} />
-            <Route exact path="/item/:itemId" component={AuthRoute(User)} />
+            <Route exact path="/item/:id" component={AuthRoute(Item)} />
             <Route component={NoMatch} />
           </Switch>
         </div>
