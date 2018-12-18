@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import { withRouter } from 'react-router';
 import UserContainer from "../../components/UserContainer";
+import CommentContainer from "../../components/CommentContainer";
+import {Input, FormBtn } from "../../components/Form";
 import 'gestalt/dist/gestalt.css';
 import "./index.css";
 
@@ -11,8 +13,10 @@ class Item extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            posts: [],
-            users: []
+            posts: {},
+            users: {},
+            comments: {},
+            newComment: ""
         };
     }
 
@@ -21,23 +25,37 @@ class Item extends Component {
             .then(res => {
                 console.log(res);
                 console.log(res.data);
-                this.setState({ posts: res.data });
-                API.findUserById(this.state.posts.UserId)
-                    .then(res => {
-                        console.log(res.data)
-                        this.setState({ users: res.data})
-                    })
-                    .catch(err => console.log(err.response));
+                this.setState({ 
+                    posts: res.data,
+                    users: res.data.User,
+                    comments: res.data.Comments
+                 });
+                console.log(res.data.User.username)
+                console.log(this.state.posts.User)
             })
             .catch(err => console.log(err.response));
+    }
+
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+          [name]: value
+        });
+      };
+
+    handleFormSubmit = event => {
+        event.preventDefault();
+        console.log(event);
+        // API Call for ccomment creation goes in here
     }
 
     render() {
         return (
             <div>
+                <div>{console.log(this.state.users.username)}</div>
                 <div className="container-fluid ">
                     <div className="row">
-                        <div className="col-6 offset-3 item-container">
+                        <div className="col-lg-6 col-md-8 col-sm-10 offset-lg-3 offset-md-2 offset-sm-1 item-container pl-4">
                             <div className="row">
                                 <div className="col-12">
                                     <p className="post-title">{this.state.posts.title}</p>
@@ -78,30 +96,32 @@ class Item extends Component {
                             <hr className="mb-4 mt-4" />
                             <div className="row">
                                 <div className="col-12">
-
+                                <p className="pb-0">Leave A Comment:</p>
+                                <Input 
+                                    value={this.state.newComment}
+                                    onChange={this.handleInputChange}
+                                    name="newComment"
+                                    type="text"
+                                    autoComplete="false"
+                                    placeholder="Hopefully Something Nice..."
+                                    required
+                                />
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-12 pb-2">
+                                    <CommentContainer />
+                                </div>
+                                <div className="col-12 pb-2">
+                                    <CommentContainer />
+                                </div>
+                                <div className="col-12 pb-2">
+                                    <CommentContainer />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                {/* <div>
-                    {console.log(JSON.stringify(this.state.posts))}
-                </div>
-                <div>
-                    <h1>{this.state.posts.id}</h1>
-                    <h1>{this.state.posts.title}</h1>
-                    <p>{this.state.posts.desc}</p>
-                    <h1>{this.state.posts.itemImg}</h1>
-                    <h1>{this.state.posts.price}</h1>
-                    <h1>{this.state.posts.carYear}</h1>
-                    <h1>{this.state.posts.carMake}</h1>
-                    <h1>{this.state.posts.carModel}</h1>
-                    <h1>{this.state.posts.location}</h1>
-                    <h1>{this.state.posts.category}</h1>
-                    <h1>{this.state.posts.createdAt}</h1>
-                    <h1>{this.state.posts.updatedAt}</h1>
-                    <h1>{this.state.posts.UserId}</h1>
-                </div> */}
             </div>
         );
     }

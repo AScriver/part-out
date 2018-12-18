@@ -32,51 +32,25 @@ module.exports = {
       where: {
         id: req.params.id
       },
-      inclide: [db.User],
+      include: [{
+        model: db.User
+      },{
+        model: db.Comment
+      }],
       order: [['id', 'DESC']]
     })
       .then(dbPost => res.json(dbPost))
-      .catch(err => res.status(422).json(err))
-  },
-  getPostByMake: function(req, res) {
-    console.log("==================GET POST BY MAKE BACKEND==================")
-    // console.log(req);
-    console.log(req.params)
-    db.Post.findAll({
-      where: {
-        carMake: req.params.carMake
-      },
-      include: [db.User],
-      order: [['id', 'DESC']]
-    })
-    .then(dbPost => res.json(dbPost))
-    .catch(err => res.status(422).json(err))
-  },
-  getPostByMakeModel: function(req, res) {
-    console.log("==================GET POST BY MAKE AND MODEL BACKEND==================")
-    db.Post.findAll({
-      where: {
-        carMake: req.params.carMake,
-        carModel: req.params.carModel
-      },
-      include: [db.User],
-      order: [['id', 'DESC']]
-    })
-    .then(dbPost => res.json(dbPost))
-    .catch(err => res.status(422).json(err))
-  },
-  getPostByMakeModelYear: function(req, res) {
-    console.log("==================GET POST BY MAKE MODEL YEAR BACKEND==================")
-    db.Post.findAll({
-      where: {
-        carMake: req.params.carMake,
-        carModel: req.params.carModel,
-        carYear: req.params.carYear
-      },
-      include: [db.User],
-      order: [['id', 'DESC']]
-    })
-    .then(dbPost => res.json(dbPost))
-    .catch(err => res.status(422).json(err))
+      .catch(err => res.json(err))
   }
+  // getComments: function(req, res){
+  //   console.log("================== GET COMMENTS ==================")
+  //   db.Comment.findAll({
+  //     where: {
+  //       PostId: req.params.id
+  //     },
+  //     include: [db.User]
+  //   })
+  //   .then(dbComment => res.json(dbComment))
+  //   .catch(err => console.log(err.response))
+  // }
 };
