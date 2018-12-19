@@ -19,7 +19,7 @@ function Sidebar(props) {
                     <Input
                         value={props.carModel}
                         onChange={props.handleInputChange}
-                        // disabled={!props.carMake}
+                        disabled={!props.carMake}
                         name="carModel"
                         type="text"
                         placeholder="Model"
@@ -27,7 +27,7 @@ function Sidebar(props) {
                 </div>
                 <div className="field-wrap">
                     <Input
-                        // disabled={!props.carModel || !props.carMake}
+                        disabled={!props.carModel || !props.carMake}
                         value={props.carYear}
                         onChange={props.handleInputChange}
                         name="carYear"
@@ -37,7 +37,7 @@ function Sidebar(props) {
                 </div>
                 <div className="field-wrap">
                   <DropDown
-                    // disabled={!props.carModel || !props.carMake || !props.carYear}
+                    disabled={!props.carModel || !props.carMake || !props.carYear}
                     value={props.category}
                     onChange={props.handleInputChange}
                     name="category"
