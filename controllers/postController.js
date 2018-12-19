@@ -37,10 +37,27 @@ module.exports = {
       },{
         model: db.Comment
       }],
-      order: [['id', 'DESC']]
+      order: [
+        [db.Comment, 'id', 'DESC']
+      ]
     })
       .then(dbPost => res.json(dbPost))
       .catch(err => res.json(err))
+  },
+  submitComment: function(req, res){
+    console.log(req.params)
+    console.log(req.query)
+    db.Comment.create({
+      user: req.body.user,
+      userid: req.body.userid,
+      comment: req.body.comment,
+      PostId: req.body.PostId
+    })
+      .then(dbComment => {
+        console.log("Comment submitted backend")
+        res.json(dbComment)
+      })
+      .catch(err => console.log(err))
   }
   // getComments: function(req, res){
   //   console.log("================== GET COMMENTS ==================")
@@ -52,5 +69,5 @@ module.exports = {
   //   })
   //   .then(dbComment => res.json(dbComment))
   //   .catch(err => console.log(err.response))
-  // }
+  // }//
 };

@@ -3,7 +3,8 @@ import API from "../../utils/API";
 import { withRouter } from 'react-router';
 import UserContainer from "../../components/UserContainer";
 import CommentContainer from "../../components/CommentContainer";
-import {Input, FormBtn } from "../../components/Form";
+import { connect } from 'react-redux'
+import { Input, FormBtn } from "../../components/Form";
 import 'gestalt/dist/gestalt.css';
 import "./index.css";
 
@@ -15,7 +16,7 @@ class Item extends Component {
         this.state = {
             posts: {},
             users: {},
-            comments: {},
+            comments: [],
             newComment: ""
         };
     }
@@ -25,11 +26,11 @@ class Item extends Component {
             .then(res => {
                 console.log(res);
                 console.log(res.data);
-                this.setState({ 
+                this.setState({
                     posts: res.data,
                     users: res.data.User,
                     comments: res.data.Comments
-                 });
+                });
                 console.log(res.data.User.username)
                 console.log(this.state.posts.User)
             })
@@ -39,23 +40,34 @@ class Item extends Component {
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
-          [name]: value
+            [name]: value
         });
-      };
+    };
 
     handleFormSubmit = event => {
         event.preventDefault();
         console.log(event);
-        // API Call for ccomment creation goes in here
+        API.submitComment({
+            user: this.props.username,
+            userid: this.props.id,
+            comment: this.state.newComment,
+            PostId: this.props.match.params.id
+        })
+            .then(res => {
+                this.setState({
+                    newComment: ""
+                })
+                this.componentDidMount();
+                console.log(res)})
+            .catch(err => console.log(err.response))
     }
 
     render() {
         return (
             <div>
-                <div>{console.log(this.state.users.username)}</div>
                 <div className="container-fluid ">
                     <div className="row">
-                        <div className="col-lg-6 col-md-8 col-sm-10 offset-lg-3 offset-md-2 offset-sm-1 item-container pl-4">
+                        <div className="col-lg-6 col-md-8 col-sm-10 offset-lg-3 offset-md-2 offset-sm-1 item-container p-4">
                             <div className="row">
                                 <div className="col-12">
                                     <p className="post-title">{this.state.posts.title}</p>
@@ -64,7 +76,7 @@ class Item extends Component {
                             <hr className="pb-4" />
                             <div className="row">
                                 <div className="col-6 postImg" style={{ backgroundImage: `url("${this.state.posts.itemImg}")` }}>
-                                    {/* <img src={this.state.posts.itemImg} className="img-fluid" alt={this.state.posts.title} /> */}
+
                                 </div>
                                 <div className="col-6">
                                     <div className="row item-tagscontainer">
@@ -94,30 +106,34 @@ class Item extends Component {
                                 </div>
                             </div>
                             <hr className="mb-4 mt-4" />
+                            <p className="pb-0">Leave A Comment:</p>
                             <div className="row">
-                                <div className="col-12">
-                                <p className="pb-0">Leave A Comment:</p>
-                                <Input 
-                                    value={this.state.newComment}
-                                    onChange={this.handleInputChange}
-                                    name="newComment"
-                                    type="text"
-                                    autoComplete="false"
-                                    placeholder="Hopefully Something Nice..."
-                                    required
-                                />
+                                <div className="col-10">
+                                    <Input
+                                        value={this.state.newComment}
+                                        onChange={this.handleInputChange}
+                                        name="newComment"
+                                        type="text"
+                                        autoComplete="false"
+                                        placeholder="Hopefully Something Nice..."
+                                        required
+                                    />
+                                </div>
+                                <div className="col-2">
+                                    <FormBtn
+                                        className="button button-block"
+                                        disabled={!this.state.newComment}
+                                        onClick={this.handleFormSubmit}
+                                    >Submit</FormBtn>
                                 </div>
                             </div>
                             <div className="row">
+                            {console.log(this.state.comments)}
+                            {this.state.comments.map(comment => (
                                 <div className="col-12 pb-2">
-                                    <CommentContainer />
+                                    <CommentContainer comment={comment}/>
                                 </div>
-                                <div className="col-12 pb-2">
-                                    <CommentContainer />
-                                </div>
-                                <div className="col-12 pb-2">
-                                    <CommentContainer />
-                                </div>
+                            ))}
                             </div>
                         </div>
                     </div>
@@ -127,5 +143,11 @@ class Item extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        id: state.auth.id,
+        username: state.auth.username
+    }
+}
 
-export default withRouter(Item);
+export default withRouter(connect(mapStateToProps)(Item));

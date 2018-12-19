@@ -42,8 +42,8 @@ export default {
         console.log("==================GET POST BY ID FRONTEND====================");
         return axios.get('/api/item/' + id);
     },
-    getComments: function(id) {
-        console.log("==================GET COMMENTS FRONTEND====================");
-        return axios.get('/api/comments' + id)
+    submitComment: function(data) {
+        console.log("================== SUBMITTING COMMENT ====================");
+        return axios.post('/api/comments', data)
     }
 }

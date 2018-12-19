@@ -13,7 +13,7 @@ router.use("/post", postRoutes);
 router.use("/login", userLogin);
 router.use("/user", userInfo);
 router.use("/item", itemRoute);
-// router.use("/comments", commentRoute);
+router.use("/comments", commentRoute);
 
 //dispatch signin and post this user information
 // https://stackoverflow.com/questions/44107665/how-to-access-a-browser-cookie-in-a-react-app

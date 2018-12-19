@@ -15,6 +15,7 @@ class Posts extends Component {
       carMake: "",
       carModel: "",
       carYear: "",
+      category: ""
     };
     this.signal = axios.CancelToken.source();
   }
@@ -63,7 +64,8 @@ class Posts extends Component {
     const filterMake = this.state.posts.filter(post => post.carMake.toLowerCase().indexOf(this.state.carMake.toLowerCase()) !== -1)
     const filterModel = filterMake.filter(post => post.carModel.toLowerCase().indexOf(this.state.carModel.toLowerCase()) !== -1)
     const filterYear = filterModel.filter(post => post.carYear.toString().indexOf(this.state.carYear.toString()) !== -1 )
-    const {carMake, carModel, carYear } = this.state;
+    const filterCategory = filterYear.filter(post => post.category.toLowerCase().indexOf(this.state.category.toLowerCase()) !== -1)
+    const {carMake, carModel, carYear, category } = this.state;
     return (
       <div>
         <div className="container-fluid">
@@ -81,7 +83,11 @@ class Posts extends Component {
               />
             </div>
             <div className="col-8 offset-1">
-              {(carMake && carModel && carYear) ? 
+              {(carMake && carModel && carYear && category) ?
+              filterCategory.map(post => (
+                <PostContainer post={post} key={post.id} />
+              )) :
+              (carMake && carModel && carYear) ? 
               filterYear.map(post => (
                 <PostContainer post={post} key={post.id} />
               )) :

@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, FormBtn } from "../Form";
+import { Input, DropDown } from "../Form";
 import "./index.css";
 
 function Sidebar(props) {
@@ -35,11 +35,28 @@ function Sidebar(props) {
                         placeholder="Year"
                     />
                 </div>
-                {/* <FormBtn
-                    onClick={props.handleFormSubmit}
-                    disabled
-                    > Search 
-                </FormBtn> */}
+                <div className="field-wrap">
+                  <DropDown
+                  disabled={!props.carModel || !props.carMake || !props.carYear}
+                    value={props.category}
+                    onChange={props.handleInputChange}
+                    name="category"
+                    type="text"
+                    id="category"
+                  >
+                    <option selected disabled>Select a category</option>
+                    <option>Brakes</option>
+                    <option>Drivetrain</option>
+                    <option>Engine</option>
+                    <option>Exhaust</option>
+                    <option>Exterior</option>
+                    <option>Intake</option>
+                    <option>Interior</option>
+                    <option>Lights</option>
+                    <option>Suspension</option>
+                    <option>Wheels & Tires</option>
+                  </DropDown>
+                </div>
             </div>
     )
 }

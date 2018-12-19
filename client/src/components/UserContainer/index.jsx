@@ -19,7 +19,7 @@ class UserContainer extends Component {
                     marginEnd={-1}
                 >
                     <Box paddingX={1}>
-                        <Avatar name={this.props.user.username} size="md" />
+                        <Avatar name={this.props.user.username} size={this.props.size ? this.props.size : "md"} />
                     </Box>
                     <Box paddingX={1}>
                         <Text bold><Link to={`/user/${this.props.user.id}`}>{this.props.user.username ? this.props.user.username : this.props.username}</Link></Text>

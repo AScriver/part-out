@@ -3,15 +3,7 @@ import { Box, Avatar, Text } from 'gestalt';
 import { Link } from "react-router-dom";
 
 
-class CommentContainer extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        }
-    }
-
-    render() {
+function CommentContainer(props){
         return (
             <div>
                 <Box
@@ -22,16 +14,15 @@ class CommentContainer extends Component {
                     marginEnd={-1}
                 >
                     <Box paddingX={1}>
-                        <Avatar name="Placeholder" size="md" />
+                        <Avatar name={props.comment.user ? props.comment.user : "loading..."} size="md" />
                     </Box>
                     <Box paddingX={1}>
-                        <Text bold><Link to={`/`}>Example</Link></Text>
-                        <Text>Example Comment AyyLmao</Text>
+                        <Text bold><Link to={`/user/${props.comment.userid ? props.comment.userid : "/"}`}>{props.comment.user ? props.comment.user : "loading..."}</Link></Text>
+                        <Text>{props.comment.comment ? props.comment.comment : "loading..."}</Text>
                     </Box>
                 </Box>
             </div>
         )
-    }
 }
 
 export default CommentContainer;
