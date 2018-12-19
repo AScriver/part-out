@@ -51,6 +51,6 @@ export default {
         return axios.delete('/api/comments/' + id);
     },
     deletePost: function(id) {
-        return axios.delete('/api/user/' + id);
+        return axios.delete('/api/post/' + id);
     }
 }
