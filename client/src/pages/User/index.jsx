@@ -57,7 +57,7 @@ class User extends Component {
             <div className="col-4 user-data-container">
               <div className="row">
                 <div className="col-12 text-center">
-                  <p>{this.state.user.username}'s Posts</p>
+                  <h2>{this.state.user.username}'s Posts</h2>
                 </div>
               </div>
               <hr className="pb-4" />
@@ -76,7 +76,7 @@ class User extends Component {
             <div className="col-4 user-data-container">
               <div className="row">
                 <div className="col-12 text-center">
-                  <p>{this.state.user.username}'s Comments</p>
+                  <h2>{this.state.user.username}'s Comments</h2>
                 </div>
               </div>
               <hr className="pb-4" />
@@ -95,7 +95,7 @@ class User extends Component {
             <div className="col-4 user-data-container">
               <div className="row">
                 <div className="col-12 text-center">
-                  <p>{this.state.user.username}'s Information</p>
+                  <h2>{this.state.user.username}'s Information</h2>
                 </div>
               </div>
               <hr className="pb-4" />

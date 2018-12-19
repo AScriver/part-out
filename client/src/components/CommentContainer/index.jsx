@@ -24,6 +24,7 @@ function CommentContainer(props) {
                     <Text bold><Link to={`/user/${props.comment.userid ? props.comment.userid : "/"}`}>{props.comment.user ? props.comment.user : "loading..."}</Link> </Text>
                     <Text>{props.comment.comment ? props.comment.comment : "loading..."}</Text>
                     {moment(props.comment.createdAt).fromNow()}
+                    {(props.username === props.comment.user) && (props.id === props.check) ? <Text><Link to={`/item/${props.comment.PostId}`}>View Post</Link></Text> : ""}
                 </Box>
                 
                 {(props.username === props.comment.user) && (props.id === props.check)

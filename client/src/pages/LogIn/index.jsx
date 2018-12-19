@@ -79,7 +79,7 @@ class LogIn extends Component {
       <div>
         <div className="row">
           <div className="col-8 offset-2">
-            <div className="form mb-4">
+            <div className="sidebar-container mb-4">
               <div id="login">
                 <h1>Welcome Back!</h1>
 

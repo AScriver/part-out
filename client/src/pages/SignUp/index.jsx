@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import "./index.css";
 import API from '../../utils/API';
 import { Input, FormBtn } from "../../components/Form";
-import {withRouter} from 'react-router'
+import { withRouter } from 'react-router'
+import { Link } from "react-router-dom";
 
 class SignUp extends Component {
   state = {
@@ -23,8 +24,8 @@ class SignUp extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.password !== this.state.confirm){
-      this.setState({err: "Passwords do not match!"});
+    if (this.state.password !== this.state.confirm) {
+      this.setState({ err: "Passwords do not match!" });
     }
 
     API.signup({
@@ -32,7 +33,7 @@ class SignUp extends Component {
       username: this.state.username,
       password: this.state.password
     }).then(resp => {
-      const {history} = this.props;
+      const { history } = this.props;
       history.push(resp.data)
     }).catch(error => {
       if (error.response) {
@@ -99,6 +100,13 @@ class SignUp extends Component {
                 required
               />
             </div>
+            <div className="row">
+              <div className="col-12">
+                <p className="no-acc">
+                  <Link to='/login'>I Already Have An Account!</Link>
+                </p>
+              </div>
+            </div>
 
 
             {/* <button type="submit" className="button button-block">Get Started</button> */}
@@ -106,7 +114,7 @@ class SignUp extends Component {
               className="button button-block"
               disabled={!(this.state.email && this.state.password && this.state.username)}
               onClick={this.handleFormSubmit}
-              >Sign Up</FormBtn>
+            >Sign Up</FormBtn>
           </form>
 
         </div>

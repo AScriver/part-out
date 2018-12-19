@@ -52,6 +52,7 @@ class Submit extends Component {
             <form className="create-form">
               <div className="form-group">
                 <div className="field-wrap">
+                <p>Post Title:</p>
                   <Input
                     value={this.state.title}
                     onChange={this.handleInputChange}
@@ -62,6 +63,7 @@ class Submit extends Component {
                     required
                   />
                 </div>
+                <p>Post Description:</p>
                 <div className="field-wrap">
                   <TextArea
                     value={this.state.desc}
@@ -73,6 +75,7 @@ class Submit extends Component {
                     required
                   />
                 </div>
+                <p>Image Link:</p>
                 <div className="field-wrap">
                   <Input
                     value={this.state.itemImg}
@@ -84,6 +87,7 @@ class Submit extends Component {
                     required
                   />
                 </div>
+                <p>Asking Price: </p>
                 <div className="field-wrap">
                   <Input
                     value={this.state.price}
@@ -97,6 +101,7 @@ class Submit extends Component {
                     required
                   />
                 </div>
+                <p>Car Year: </p>
                 <div className="field-wrap">
                   <Input
                     value={this.state.carYear}
@@ -110,6 +115,7 @@ class Submit extends Component {
                     required
                   />
                 </div>
+                <p>Car Make: </p>
                 <div className="field-wrap">
                   <Input
                     value={this.state.carMake}
@@ -121,6 +127,7 @@ class Submit extends Component {
                     required
                   />
                 </div>
+                <p>Car Model: </p>
                 <div className="field-wrap">
                   <Input
                     value={this.state.carModel}
@@ -132,6 +139,7 @@ class Submit extends Component {
                     required
                   />
                 </div>
+                <p>Location: </p>
                 <div className="field-wrap">
                   <Input
                     value={this.state.location}
@@ -143,6 +151,7 @@ class Submit extends Component {
                     required
                   />
                 </div>
+                <p>Category: </p>
                 <div className="field-wrap">
                   <DropDown
                     value={this.state.category}
