@@ -1,29 +1,45 @@
-# Create React Express App
+# PartOut
 
-## About This Boilerplate
+Automotive marketplace with user profiles
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+## Getting Started
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
-
-## Starting the app locally
-
-Start by installing front and backend dependencies. While in this directory, run the following command:
-
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 ```
-yarn install
+git clone git@github.com:AScriver/part-out.git
 ```
 
-This should install node modules within the server and the client folder.
+### Prerequisites
 
-After both installations complete, run the following command in your terminal:
+What things you need to install the software and how to install them
 
 ```
-yarn start
+MAMP or your preffered way of running SQL Server
 ```
 
-Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
+### Installing
 
-## Deployment (Heroku)
+```
+npm install
+```
 
-To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
+then
+
+```
+npm start
+```
+
+## Built With
+
+* [Create React App](https://github.com/facebook/create-react-app)
+* [Express](https://expressjs.com/)
+* [Passport](http://www.passportjs.org/)
+* [Redux](https://redux.js.org/)
+
+## Authors
+
+* **Austin Scriver** - *Initial work* - [AScriver](https://github.com/AScriver)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
