@@ -43,7 +43,9 @@ class LogIn extends Component {
             username: resp.data.username,
             email: resp.data.email,
             id: resp.data.id,
-            profileImg: resp.data.profileImg
+            profileImg: resp.data.profileImg,
+            createdAt: resp.data.createdAt,
+            updatedAt: resp.data.updatedAt
           });
 
           this.props.signin(
@@ -51,7 +53,9 @@ class LogIn extends Component {
             this.state.authenticated,
             this.state.email,
             this.state.profileImg,
-            this.state.id
+            this.state.id,
+            this.state.createdAt,
+            this.state.updatedAt
           );
 
           const { history } = this.props;
@@ -160,14 +164,16 @@ const mapStateToProps = state => {
 // updates store
 function mapDispatchToProps(dispatch) {
   return {
-    signin(username, authenticated, email, profileImg, id) {
+    signin(username, authenticated, email, profileImg, id, createdAt, updatedAt) {
       dispatch(
         signinReq({
           username: username,
           authenticated: authenticated,
           email: email,
           profileImg: profileImg,
-          id: id
+          id: id,
+          createdAt: createdAt,
+          updatedAt: updatedAt
         })
       );
     },

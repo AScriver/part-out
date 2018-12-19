@@ -58,16 +58,23 @@ module.exports = {
         res.json(dbComment)
       })
       .catch(err => console.log(err))
+  },
+  deleteComment: function(req, res){
+    db.Comment.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(dbComment => res.json(dbComment))
+      .catch(err => console.log(err))
+  },
+  deletePost: function(req, res) {
+    db.Post.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(dbPost => res.json(dbPost))
+      .catch(err => console.log(err))
   }
-  // getComments: function(req, res){
-  //   console.log("================== GET COMMENTS ==================")
-  //   db.Comment.findAll({
-  //     where: {
-  //       PostId: req.params.id
-  //     },
-  //     include: [db.User]
-  //   })
-  //   .then(dbComment => res.json(dbComment))
-  //   .catch(err => console.log(err.response))
-  // }//
 };

@@ -3,6 +3,7 @@ const userController = require('../../controllers/userController');
 
 // routes /api/user
 router.route('/:id')
-    .get(userController.userInfo);
+    .get(userController.userInfo)
+    
 
 module.exports = router;

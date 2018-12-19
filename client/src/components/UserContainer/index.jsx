@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Box, Avatar, Text } from 'gestalt';
 import { Link } from "react-router-dom";
+import moment from 'moment'
+import { connect } from 'react-redux'
 
 
 class UserContainer extends Component {
@@ -23,16 +25,23 @@ class UserContainer extends Component {
                     </Box>
                     <Box paddingX={1}>
                         <Text bold><Link to={`/user/${this.props.user.id}`}>{this.props.user.username ? this.props.user.username : this.props.username}</Link></Text>
-                        {/* <Text>joined 2 years ago</Text> */}
+                        {this.props.user.createdAt ? <Text>Joined {moment(this.props.user.createdAt).fromNow()}</Text> : " "}
                     </Box>
+                    
                 </Box>
             </div>
         )
     }
 }
 
-export default UserContainer;
+const mapStateToProps = state => {
+    return {
+        username: state.auth.username,
+        id: state.auth.id,
+    }
+}
 
+export default connect(mapStateToProps)(UserContainer);
 
 
 

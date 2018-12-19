@@ -19,9 +19,18 @@ module.exports = {
       }
   },
   userInfo: function(req, res) {
-    console.log("================== FIND USER - USERCONTROLLER =================")
-    console.log(req.params);
-    db.User.findOne({where: {id: req.params.id}})
-      .then(dbModel => res.json(dbModel))
+    console.log("================== FIND USER - USERCONTROLLER =================");
+    db.User.findOne({where: {id: req.params.id},
+      include: [{model: db.Post}]
+    })
+      .then(dbUser => {
+        db.Comment.findAll({where: {UserId: req.params.id}
+        })
+          .then(dbComment => {
+            res.json({user: dbUser, comments: dbComment})
+          })
+          .catch(err => console.log(err))
+      })
+      .catch(err => console.log(err))
   }
 };

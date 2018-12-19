@@ -45,5 +45,12 @@ export default {
     submitComment: function(data) {
         console.log("================== SUBMITTING COMMENT ====================");
         return axios.post('/api/comments', data)
+    },
+    deleteComment: function(id) {
+        console.log("Delete: " + id)
+        return axios.delete('/api/comments/' + id);
+    },
+    deletePost: function(id) {
+        return axios.delete('/api/user/' + id);
     }
 }

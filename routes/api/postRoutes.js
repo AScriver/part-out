@@ -7,6 +7,9 @@ router.route('/')
     .post(postController.createPost)
     .get(postController.getAllPosts);
 
+router.route('/:id')
+    .delete(postController.deletePost);
+
 // router.route('/:carMake')
 //     .get(postController.getPostByMake)
 

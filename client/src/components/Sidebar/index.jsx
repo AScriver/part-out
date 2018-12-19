@@ -37,14 +37,14 @@ function Sidebar(props) {
                 </div>
                 <div className="field-wrap">
                   <DropDown
-                  disabled={!props.carModel || !props.carMake || !props.carYear}
+                    disabled={!props.carModel || !props.carMake || !props.carYear}
                     value={props.category}
                     onChange={props.handleInputChange}
                     name="category"
                     type="text"
                     id="category"
                   >
-                    <option selected disabled>Select a category</option>
+                    <option selected>Select a category...</option>
                     <option>Brakes</option>
                     <option>Drivetrain</option>
                     <option>Engine</option>

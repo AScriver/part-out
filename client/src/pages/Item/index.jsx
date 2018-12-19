@@ -5,7 +5,9 @@ import UserContainer from "../../components/UserContainer";
 import CommentContainer from "../../components/CommentContainer";
 import { connect } from 'react-redux'
 import { Input, FormBtn } from "../../components/Form";
+import { Text } from 'gestalt';
 import 'gestalt/dist/gestalt.css';
+import moment from 'moment'
 import "./index.css";
 
 
@@ -84,6 +86,9 @@ class Item extends Component {
                                             <UserContainer user={this.state.users} />
                                         </div>
                                         <div className="col-12">
+                                            <p><span className="tags">Posted: </span>{moment(this.state.posts.createdAt).fromNow()}</p>
+                                        </div>
+                                        <div className="col-12">
                                             <p><span className="tags">Price: </span>${this.state.posts.price}</p>
                                         </div>
                                         <div className="col-12">
@@ -131,7 +136,8 @@ class Item extends Component {
                             {console.log(this.state.comments)}
                             {this.state.comments.map(comment => (
                                 <div className="col-12 pb-2">
-                                    <CommentContainer comment={comment}/>
+                                    <CommentContainer comment={comment} key={comment.id}/>
+                                    <hr className="mt-2"/>
                                 </div>
                             ))}
                             </div>

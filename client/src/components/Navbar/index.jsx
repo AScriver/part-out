@@ -18,14 +18,14 @@ class Navbar extends Component {
                         <ul className="navbar-nav nav-pills nav-fill ml-auto">
                             {this.props.username ?
                                 <li className="nav-item">
-                                    <Link to="/submit" className="nav-link">Submit</Link>
+                                    <Link to="/submit" className="nav-link mt-1">Submit</Link>
                                 </li>
                                 :
                                 ""
                             }
                             {this.props.username ?
                                 <li className="nav-item">
-                                    <Link to="/" onClick={() => this.props.logoutButton()} className="nav-link">Logout</Link>
+                                    <Link to="/" onClick={() => this.props.logoutButton()} className="nav-link mt-1">Logout</Link>
                                 </li>
                                 :
                                 <li className="nav-item">
@@ -60,7 +60,9 @@ class Navbar extends Component {
 const mapStateToProps = state => {
     return {
         id: state.auth.id,
-        username: state.auth.username
+        username: state.auth.username,
+        createdAt: state.auth.createdAt,
+        updatedAt: state.auth.updatedAt
     };
 };
 

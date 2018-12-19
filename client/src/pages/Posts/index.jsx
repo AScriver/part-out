@@ -15,7 +15,7 @@ class Posts extends Component {
       carMake: "",
       carModel: "",
       carYear: "",
-      category: ""
+      category: "Select A Category..."
     };
     this.signal = axios.CancelToken.source();
   }
@@ -62,9 +62,9 @@ class Posts extends Component {
 
   render() {
     const filterMake = this.state.posts.filter(post => post.carMake.toLowerCase().indexOf(this.state.carMake.toLowerCase()) !== -1)
-    const filterModel = filterMake.filter(post => post.carModel.toLowerCase().indexOf(this.state.carModel.toLowerCase()) !== -1)
-    const filterYear = filterModel.filter(post => post.carYear.toString().indexOf(this.state.carYear.toString()) !== -1 )
-    const filterCategory = filterYear.filter(post => post.category.toLowerCase().indexOf(this.state.category.toLowerCase()) !== -1)
+    const filterModel = this.state.posts.filter(post => post.carModel.toLowerCase().indexOf(this.state.carModel.toLowerCase()) !== -1)
+    const filterYear = this.state.posts.filter(post => post.carYear.toString().indexOf(this.state.carYear.toString()) !== -1 )
+    const filterCategory = this.state.posts.filter(post => post.category.toLowerCase().indexOf(this.state.category.toLowerCase()) !== -1)
     const {carMake, carModel, carYear, category } = this.state;
     return (
       <div>
@@ -75,6 +75,7 @@ class Posts extends Component {
                 carMake={this.state.carMake}
                 carModel={this.state.carModel}
                 carYear={this.state.carYear}
+                category={this.state.category}
                 handleInputChange={this.handleInputChange}
                 handleFormSubmit={(event) => {
                   event.preventDefault()
