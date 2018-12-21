@@ -21,10 +21,10 @@ class UserContainer extends Component {
                     marginEnd={-1}
                 >
                     <Box paddingX={1}>
-                        <Avatar name={this.props.user.username} size={this.props.size ? this.props.size : "md"} />
+                        <Avatar verified={this.props.verified} name={this.props.user.username} size={this.props.size ? this.props.size : "md"} />
                     </Box>
                     <Box paddingX={1}>
-                        <Text bold><Link to={`/user/${this.props.user.id}`}>{this.props.user.username ? this.props.user.username : this.props.username}</Link></Text>
+                        <Text bold><Link to={`/user/${this.props.user.id}`}>{this.props.user.username}</Link></Text>
                         {this.props.user.createdAt ? <Text>Joined {moment(this.props.user.createdAt).fromNow()}</Text> : " "}
                     </Box>
                     
@@ -38,6 +38,8 @@ const mapStateToProps = state => {
     return {
         username: state.auth.username,
         id: state.auth.id,
+        verified: state.auth.verified,
+        permissions: state.auth.permissions
     }
 }
 

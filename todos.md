@@ -1,7 +1,4 @@
-- Handle login errors!
-- user profiles
-- post detail page (comments?)
-- allow users to delete own postse
+
 - allow users to message eachother
     -   new database table, from: ... to: ... context: ...
 - user picture uploads
@@ -15,3 +12,4 @@
 - forgot password
 - reports
 - notifications
+- mobile friendly

@@ -2,10 +2,12 @@ import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import NavbarFix from './components/NavbarFix';
 import AuthRoute from "./utils/AuthRoute";
 import AlreadyAuth from "./utils/AlreadyAuth";
+import AdminAuth from "./utils/AdminAuth";
 import React, { Component } from "react";
 import Navbar from './components/Navbar';
 import NoMatch from "./pages/NoMatch";
 import Submit from './pages/Submit';
+import Admin from './pages/Admin';
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
 import Posts from "./pages/Posts";
@@ -28,6 +30,7 @@ class App extends Component {
             <Route exact path="/login" component={AlreadyAuth(LogIn)} />
             <Route exact path="/user/:id" component={AuthRoute(User)} />
             <Route exact path="/item/:id" component={AuthRoute(Item)} />
+            <Route exact path="/admin" component={AdminAuth(Admin)} />
             <Route component={NoMatch} />
           </Switch>
         </div>

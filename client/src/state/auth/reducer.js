@@ -8,7 +8,9 @@ const defaultState = {
   profileImg: null,
   id: null,
   createdAt: null,
-  updatedAt: null
+  updatedAt: null,
+  verified: null,
+  permissions: null
 };
 
 const authReducer = handleActions({
@@ -20,7 +22,9 @@ const authReducer = handleActions({
       profileImg: action.payload.profileImg,
       id: action.payload.id,
       createdAt: action.payload.createdAt,
-      updatedAt: action.payload.updatedAt
+      updatedAt: action.payload.updatedAt,
+      verified: action.payload.verified,
+      permissions: action.payload.permissions
     };
   },
   [signoutReq]: (state, action) => defaultState,

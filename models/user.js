@@ -22,6 +22,14 @@ module.exports = function(sequelize, DataTypes) {
     profileImg: {
       type: DataTypes.STRING,
       defaultValue: "default.png"
+    },
+    verified:{
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
+    },
+    permissions:{
+      type: DataTypes.STRING,
+      defaultValue: "admin"
     }
   });
 

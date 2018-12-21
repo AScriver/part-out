@@ -15,6 +15,11 @@ class Navbar extends Component {
                 <nav className="navbar fixed-top navbar-expand navbar-light bg-light">
                     <Link to="/" className="navbar-brand"> PartOut </Link>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul className="navbar-nav nav-pills nav-fill">
+                            <li className="nav-item">
+                                <Link to="/admin" className="nav-link">Admin</Link>
+                            </li>
+                        </ul>
                         <ul className="navbar-nav nav-pills nav-fill ml-auto">
                             {this.props.username ?
                                 <li className="nav-item">
@@ -66,9 +71,9 @@ const mapStateToProps = state => {
     };
 };
 
-function mapDispatchToProps(dispatch){
-    return{
-        logoutButton(){
+function mapDispatchToProps(dispatch) {
+    return {
+        logoutButton() {
             dispatch(signoutReq());
         }
     }
