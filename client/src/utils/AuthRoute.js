@@ -10,13 +10,18 @@ const RequireAuth = ComposedComponent => {
 
     // Check before components
     componentWillMount() {
-      if (!this.props.authenticated) {
-        this.context.router.history.push("/login");
-      }
+      this.userCheck();
     }
 
     // Compare new props coming in
     componentWillUpdate(nextProps) {
+      this.userCheck();
+    }
+
+    userCheck = () => {
+      if (this.props.status === "banned"){
+        this.context.router.history.push("/banned");
+      }
       if (!this.props.authenticated) {
         this.context.router.history.push("/login");
       }
@@ -31,7 +36,7 @@ const RequireAuth = ComposedComponent => {
     return {
       authenticated: state.auth.authenticated,
       username: state.auth.username,
-      rerender: state.auth.rerender
+      status: state.auth.status
     };
   };
 

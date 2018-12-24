@@ -32,5 +32,22 @@ module.exports = {
           .catch(err => console.log(err))
       })
       .catch(err => console.log(err))
+  },
+  allUsers: function(req, res) {
+    db.User.findAll()
+      .then(dbUser => {
+        console.log(dbUser)
+        res.json(dbUser)})
+      .catch(err => console.log(err))
+  },
+  updateUserStatus: function(req, res) {
+    db.User.update(req.body, {
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(dbUser => {
+        console.log(dbUser)
+        res.json(dbUser)})
   }
 };

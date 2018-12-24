@@ -47,7 +47,8 @@ class LogIn extends Component {
             createdAt: resp.data.createdAt,
             updatedAt: resp.data.updatedAt,
             verified: resp.data.verified,
-            permissions: resp.data.permissions
+            permissions: resp.data.permissions,
+            status: resp.data.status
           });
 
           this.props.signin(
@@ -59,7 +60,8 @@ class LogIn extends Component {
             this.state.createdAt,
             this.state.updatedAt,
             this.state.verified,
-            this.state.permissions
+            this.state.permissions,
+            this.state.status
           );
 
           const { history } = this.props;
@@ -168,7 +170,7 @@ const mapStateToProps = state => {
 // updates store
 function mapDispatchToProps(dispatch) {
   return {
-    signin(username, authenticated, email, profileImg, id, createdAt, updatedAt, verified, permissions) {
+    signin(username, authenticated, email, profileImg, id, createdAt, updatedAt, verified, permissions, status) {
       dispatch(
         signinReq({
           username: username,
@@ -179,7 +181,8 @@ function mapDispatchToProps(dispatch) {
           createdAt: createdAt,
           updatedAt: updatedAt,
           verified: verified,
-          permissions: permissions
+          permissions: permissions,
+          status: status
         })
       );
     },

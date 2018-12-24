@@ -25,19 +25,6 @@ export default {
         console.log("==================GET ALL POSTS FRONTEND====================");
         return axios.get('/api/post', cancelToken)
     },
-    getPostByMake: function(carMake, cancelToken) {
-        console.log("==================GET POSTS BY MAKE FRONTEND====================");
-        console.log(carMake)
-        return axios.get('/api/post/' + carMake, cancelToken)
-    },
-    getPostByMakeModel: function(carMake, carModel, cancelToken) {
-        console.log("==================GET POSTS BY MAKE MODEL FRONTEND====================");
-        return axios.get('/api/post/' + carMake + '/' + carModel, cancelToken)
-    },
-    getPostByMakeModelYear: function(carMake, carModel, carYear, cancelToken) {
-        console.log("==================GET POSTS BY MAKE MODEL YEAR FRONTEND====================");
-        return axios.get('/api/post/' + carMake + '/' + carModel + '/' + carYear, cancelToken)
-    },
     getPostById: function(id) {
         console.log("==================GET POST BY ID FRONTEND====================");
         return axios.get('/api/item/' + id);
@@ -52,5 +39,11 @@ export default {
     },
     deletePost: function(id) {
         return axios.delete('/api/post/' + id);
+    },
+    getAllUsers: function(){
+        return axios.get('/api/user/');
+    },
+    updateUserStatus: function(id, data){
+        return axios.put('/api/user/' + id, data)
     }
 }

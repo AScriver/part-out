@@ -10,7 +10,8 @@ const defaultState = {
   createdAt: null,
   updatedAt: null,
   verified: null,
-  permissions: null
+  permissions: null,
+  status: null,
 };
 
 const authReducer = handleActions({
@@ -24,7 +25,8 @@ const authReducer = handleActions({
       createdAt: action.payload.createdAt,
       updatedAt: action.payload.updatedAt,
       verified: action.payload.verified,
-      permissions: action.payload.permissions
+      permissions: action.payload.permissions,
+      status: action.payload.status
     };
   },
   [signoutReq]: (state, action) => defaultState,

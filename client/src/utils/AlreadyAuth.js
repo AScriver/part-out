@@ -29,7 +29,7 @@ const RequireAuth = ComposedComponent => {
 
   const mapStateToProps = state => {
     return {
-      authenticated: state.auth.authenticated
+      authenticated: state.auth.authenticated,
     };
   };
 

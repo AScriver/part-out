@@ -12,6 +12,7 @@ import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
 import Posts from "./pages/Posts";
 import User from "./pages/User";
+import Banned from "./pages/Banned"
 import Item from "./pages/Item"
 // import Test from "./pages/Test";
 import "./App.css";
@@ -24,13 +25,14 @@ class App extends Component {
           <Navbar />
           <NavbarFix />
           <Switch>
-            <Route exact path="/" component={AuthRoute(Posts)} />
+            <Route exact path="/" component={Posts} />
             <Route exact path="/submit" component={AuthRoute(Submit)} />
             <Route exact path="/signup" component={AlreadyAuth(SignUp)} />
             <Route exact path="/login" component={AlreadyAuth(LogIn)} />
             <Route exact path="/user/:id" component={AuthRoute(User)} />
             <Route exact path="/item/:id" component={AuthRoute(Item)} />
             <Route exact path="/admin" component={AdminAuth(Admin)} />
+            <Route exact path="/banned" component={Banned} />
             <Route component={NoMatch} />
           </Switch>
         </div>

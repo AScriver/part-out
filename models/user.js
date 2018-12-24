@@ -30,6 +30,10 @@ module.exports = function(sequelize, DataTypes) {
     permissions:{
       type: DataTypes.STRING,
       defaultValue: "admin"
+    },
+    status: {
+      type: DataTypes.STRING,
+      defaultValue: "okay"
     }
   });
 
