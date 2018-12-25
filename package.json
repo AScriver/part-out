@@ -24,6 +24,7 @@
     "express-session": "^1.15.6",
     "gestalt": "^0.85.0",
     "if-env": "^1.0.4",
+    "mime": "^2.4.0",
     "moment": "^2.23.0",
     "multer": "^1.4.1",
     "mysql": "^2.16.0",
