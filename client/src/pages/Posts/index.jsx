@@ -6,7 +6,6 @@ import { withRouter } from 'react-router'
 import axios from 'axios';
 import "./index.css";
 
-// Use url to search through database and update accordingly
 class Posts extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +30,7 @@ class Posts extends Component {
       })
       .catch(function (error) {
         if (axios.isCancel(error)) {
-          console.log('Error: ', error.message); // => prints: Api is being canceled
+          console.log('Error: ', error.message);
         } else {
           console.log(error)
         }
@@ -47,8 +46,6 @@ class Posts extends Component {
     this.setState({
       [name]: value
     });
-
-
   };
 
   handleFormSubmit = event => {

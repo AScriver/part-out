@@ -16,9 +16,13 @@ class Navbar extends Component {
                     <Link to="/" className="navbar-brand"> PartOut </Link>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav nav-pills nav-fill">
+                        {this.props.permissions === 'admin' ? 
                             <li className="nav-item">
                                 <Link to="/admin" className="nav-link">Admin</Link>
                             </li>
+                            :
+                            ""
+                        }
                         </ul>
                         <ul className="navbar-nav nav-pills nav-fill ml-auto">
                             {this.props.username ?
@@ -47,7 +51,6 @@ class Navbar extends Component {
                             {this.props.username ?
                                 <li className="nav-item ml-2">
                                     <UserContainer user={this.props} />
-                                    {/* <Link to={`/user/${this.props.id}`} className="nav-link">Signed in as: {this.props.username}</Link> */}
                                 </li>
                                 :
                                 ""
@@ -67,7 +70,8 @@ const mapStateToProps = state => {
         id: state.auth.id,
         username: state.auth.username,
         createdAt: state.auth.createdAt,
-        updatedAt: state.auth.updatedAt
+        updatedAt: state.auth.updatedAt,
+        permissions: state.auth.permissions
     };
 };
 

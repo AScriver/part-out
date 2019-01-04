@@ -1,20 +1,20 @@
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import NavbarFix from './components/NavbarFix';
-import AuthRoute from "./utils/AuthRoute";
 import AlreadyAuth from "./utils/AlreadyAuth";
+import AuthRoute from "./utils/AuthRoute";
 import AdminAuth from "./utils/AdminAuth";
 import React, { Component } from "react";
 import Navbar from './components/Navbar';
 import NoMatch from "./pages/NoMatch";
-import Submit from './pages/Submit';
-import Admin from './pages/Admin';
 import SignUp from "./pages/SignUp";
+import Submit from './pages/Submit';
+import Banned from "./pages/Banned";
+// import Test from "./pages/Test";
+import Admin from './pages/Admin';
 import LogIn from "./pages/LogIn";
 import Posts from "./pages/Posts";
 import User from "./pages/User";
-import Banned from "./pages/Banned"
-import Item from "./pages/Item"
-// import Test from "./pages/Test";
+import Item from "./pages/Item";
 import "./App.css";
 
 class App extends Component {  

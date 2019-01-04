@@ -28,16 +28,12 @@ class Test extends Component {
       .catch(err => console.log(err))
   }
 
-  userTempBan = (id, status) => {
+  userBan = (id, status) => {
     console.log("ayylmao")
     API.updateUserStatus( id, {
       status: status
     })
     .then(res => console.log(res))
-  }
-
-  userPermBan = () => {
-    //
   }
 
   render() {
@@ -61,7 +57,7 @@ class Test extends Component {
                 </thead>
                 <tbody>
                   {this.state.users.map(user => (
-                    <tr>
+                    <tr key={user.id}>
                       <th scope="row">{user.id}</th>
                       <td>{user.email}</td>
                       <td>{user.username}</td>
@@ -70,9 +66,8 @@ class Test extends Component {
                       <td>{user.permissions}</td>
                       <td>{user.createdAt}</td>
                       <td>{user.updatedAt}</td>
-                      <td><button className="btn btn-danger btn-sm" onClick={() => this.userTempBan(user.id, "temp")}>Temp Ban</button></td>
-                      <td><button className="btn btn-danger btn-sm">Perm Ban</button></td>
-                      <td><button className="btn btn-success btn-sm">Unban</button></td>
+                      <td><button className="btn btn-danger btn-sm" onClick={() => this.userBan(user.id, "banned")}>Temp Ban</button></td>
+                      <td><button className="btn btn-success btn-sm" onClick={() => this.userBan(user.id, "okay")}>Unban</button></td>
                     </tr>
                   ))}
                 </tbody>

@@ -38,6 +38,10 @@ class SignUp extends Component {
     }).catch(error => {
       if (error.response) {
         console.log(error.response);
+        this.setState({
+          err: error.response.data.errors[0].path
+        })
+        console.log(this.state.err)
       } else if (error.request) {
         console.log(error.request);
       } else {
@@ -49,6 +53,7 @@ class SignUp extends Component {
 
   render() {
     return (
+      <div>
       <div className="form">
         <div id="signup">
           <h1>Create an Account</h1>
@@ -118,6 +123,26 @@ class SignUp extends Component {
           </form>
 
         </div>
+      </div>
+      <div>
+        {this.state.err ? (
+          <div className="row mt-0">
+            <div className="col-8 offset-2">
+              <div id="alert" className="alert alert-danger mt-0" role="alert">
+                <span
+                  className="fas fa-exclamation"
+                  aria-hidden="true"
+                />
+                <span className="sr-only">Error:</span>
+
+                <span className="msg">&nbsp; {this.state.err === "email" ? "Email is already in use!" : this.state.err === "username" ? "Username is already in use!" : " "}</span>
+              </div>
+            </div>
+          </div>
+        ) : (
+            " "
+          )}
+      </div>
       </div>
     )
   }
