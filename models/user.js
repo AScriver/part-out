@@ -25,11 +25,11 @@ module.exports = function(sequelize, DataTypes) {
     },
     verified:{
       type: DataTypes.BOOLEAN,
-      defaultValue: true
+      defaultValue: false
     },
     permissions:{
       type: DataTypes.STRING,
-      defaultValue: "admin"
+      defaultValue: "user"
     },
     status: {
       type: DataTypes.STRING,

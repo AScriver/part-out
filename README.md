@@ -1,33 +1,32 @@
 # PartOut
 
-Automotive marketplace with user profiles
+An automotive marketplace with user profiles, submissions, and validation.
+
+* Live version: https://floating-badlands-51172.herokuapp.com/
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 ```
 git clone git@github.com:AScriver/part-out.git
+cd part-out
+npm install
+npm start
 ```
-
+or, if you prefer to use yarn:
+```
+git clone git@github.com:AScriver/part-out.git
+cd part-out
+yarn add
+yarn start
+```
 ### Prerequisites
 
 What things you need to install the software and how to install them
 
-```
-MAMP or your preffered way of running SQL Server
-```
 
-### Installing
-
-```
-npm install
-```
-
-then
-
-```
-npm start
-```
+* [MAMP](https://www.mamp.info/en/downloads/) or your preffered way of running SQL Server
+(for local instances)
 
 ## Built With
 

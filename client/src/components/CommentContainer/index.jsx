@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 
 function CommentContainer(props) {
     return (
-        <div dispatch="somanywarnings" {...props}>
+        <div {...props}>
             <Box
                 alignItems="center"
                 direction="row"
@@ -18,7 +18,7 @@ function CommentContainer(props) {
 
             >
                 <Box paddingX={1}>
-                    <Avatar name={props.comment.user ? props.comment.user : "loading..."} size="md" />
+                    <Avatar verified={props.verified} name={props.comment.user} size="md" />
                 </Box>
                 <Box paddingX={1}>
                     <Text bold><Link to={`/user/${props.comment.userid ? props.comment.userid : "/"}`}>{props.comment.user ? props.comment.user : "loading..."}</Link> </Text>
