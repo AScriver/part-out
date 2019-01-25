@@ -25,22 +25,11 @@ app.use(session({ secret: "ayyylmao", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 // Define API routes here
 app.use(routes);
-
-
-// Syncing our sequelize models and then starting our Express app
-// =============================================================
-/////////////////////////////////////////////////////////////////
-///////////////REMOVE FORCE TRUE BEFORE PRODUCTION///////////////
-/////////////////////////////////////////////////////////////////
 
 db.sequelize.sync().then(function() { 
   app.listen(PORT, function(){
     console.log(`App listening on PORT ${PORT}`);
 });
 });
-
-// External CDNs can be linked in the ___ file, and static assets 
-// placed in the ___ folder, that will not be processed by Babel or Webpack.
