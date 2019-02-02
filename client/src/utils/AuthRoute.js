@@ -36,6 +36,7 @@ const RequireAuth = ComposedComponent => {
     return {
       authenticated: state.auth.authenticated,
       username: state.auth.username,
+      permissions: state.auth.permissions,
       status: state.auth.status,
       id: state.auth.id
     };
