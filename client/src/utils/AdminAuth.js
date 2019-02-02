@@ -1,6 +1,6 @@
-import React from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 const AdminAuth = ComposedComponent => {
   class Authentication extends React.Component {
@@ -10,15 +10,15 @@ const AdminAuth = ComposedComponent => {
 
     // Check before components
     componentWillMount() {
-      if (this.props.permissions !== "admin") {
-        this.context.router.history.push("/");
+      if (this.props.permissions !== 'admin') {
+        this.context.router.history.push('/');
       }
     }
 
     // Compare new props coming in
     componentWillUpdate(nextProps) {
-      if (this.props.permissions !== "admin") {
-        this.context.router.history.push("/");
+      if (this.props.permissions !== 'admin') {
+        this.context.router.history.push('/');
       }
     }
 
@@ -31,7 +31,9 @@ const AdminAuth = ComposedComponent => {
     return {
       authenticated: state.auth.authenticated,
       username: state.auth.username,
-      permissions: state.auth.permissions
+      permissions: state.auth.permissions,
+      status: state.auth.status,
+      id: state.auth.id
     };
   };
 

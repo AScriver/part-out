@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import API from '../../utils/API';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
 class Test extends Component {
   constructor(props) {
@@ -91,4 +93,4 @@ class Test extends Component {
   }
 }
 
-export default Test;
+export default withRouter(connect()(Test));

@@ -17,7 +17,7 @@ class UserContainer extends Component {
         >
           <Box paddingX={1}>
             <Avatar
-              verified={this.props.verified}
+              verified={this.props.user.verified}
               name={
                 this.props.user.username
                   ? this.props.user.username
