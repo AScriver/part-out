@@ -39,7 +39,7 @@ class Test extends Component {
         <div className='container-fluid'>
           <div className='row'>
             <div className='col-8 offset-2'>
-              <table class='table table-dark table-sm'>
+              <table className='table table-dark table-sm'>
                 <thead>
                   <tr>
                     <th scope='col'>ID</th>
