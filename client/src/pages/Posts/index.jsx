@@ -1,44 +1,44 @@
-import React, { Component } from "react";
-import Sidebar from "../../components/Sidebar";
-import API from "../../utils/API";
-import PostContainer from "../../components/PostContainer"
-import { withRouter } from 'react-router'
+import React, { Component } from 'react';
+import Sidebar from '../../components/Sidebar';
+import API from '../../utils/API';
+import PostContainer from '../../components/PostContainer';
+import { withRouter } from 'react-router';
 import axios from 'axios';
-import "./index.css";
+import './index.css';
 
 class Posts extends Component {
   constructor(props) {
     super(props);
     this.state = {
       posts: [],
-      carMake: "",
-      carModel: "",
-      carYear: "",
-      category: "Select A Category..."
+      carMake: '',
+      carModel: '',
+      carYear: '',
+      category: 'Select A Category...'
     };
     this.signal = axios.CancelToken.source();
   }
 
   componentDidMount() {
     API.getAllPosts({
-      cancelToken: this.signal.token,
+      cancelToken: this.signal.token
     })
       .then(resp => {
         this.setState({
-          posts: resp.data,
+          posts: resp.data
         });
       })
-      .catch(function (error) {
+      .catch(function(error) {
         if (axios.isCancel(error)) {
           console.log('Error: ', error.message);
         } else {
-          console.log(error)
+          console.log(error);
         }
       });
   }
 
   componentWillUnmount() {
-    this.signal.cancel('Api is being canceled')
+    this.signal.cancel('Api is being canceled');
   }
 
   handleInputChange = event => {
@@ -50,57 +50,62 @@ class Posts extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    console.log('Form Submitted')
-  }
-
-
-
-
+    console.log('Form Submitted');
+  };
 
   render() {
-    const filterMake = this.state.posts.filter(post => post.carMake.toLowerCase().indexOf(this.state.carMake.toLowerCase()) !== -1)
-    const filterModel = this.state.posts.filter(post => post.carModel.toLowerCase().indexOf(this.state.carModel.toLowerCase()) !== -1)
-    const filterYear = this.state.posts.filter(post => post.carYear.toString().indexOf(this.state.carYear.toString()) !== -1 )
-    const filterCategory = this.state.posts.filter(post => post.category.toLowerCase().indexOf(this.state.category.toLowerCase()) !== -1)
-    const {carMake, carModel, carYear, category } = this.state;
+    const { carMake, carModel, carYear, category, posts } = this.state;
+
+    const filterMake = posts.filter(
+      post => post.carMake.toLowerCase().indexOf(carMake.toLowerCase()) !== -1
+    );
+    const filterModel = posts.filter(
+      post => post.carModel.toLowerCase().indexOf(carModel.toLowerCase()) !== -1
+    );
+    const filterYear = posts.filter(
+      post => post.carYear.toString().indexOf(carYear.toString()) !== -1
+    );
+    const filterCategory = posts.filter(
+      post => post.category.toLowerCase().indexOf(category.toLowerCase()) !== -1
+    );
+
     return (
       <div>
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-2">
+        <div className='container-fluid'>
+          <div className='row'>
+            <div className='col-2'>
               <Sidebar
-                carMake={this.state.carMake}
-                carModel={this.state.carModel}
-                carYear={this.state.carYear}
-                category={this.state.category}
+                carMake={carMake}
+                carModel={carModel}
+                carYear={carYear}
+                category={category}
                 handleInputChange={this.handleInputChange}
-                handleFormSubmit={(event) => {
-                  event.preventDefault()
+                handleFormSubmit={event => {
+                  event.preventDefault();
                   this.handleFormSubmit(event);
                 }}
               />
             </div>
-            <div className="col-8 offset-1">
-              {(carMake && carModel && carYear && category) ?
-              filterCategory.map(post => (
-                <PostContainer post={post} key={post.id} />
-              )) :
-              (carMake && carModel && carYear) ? 
-              filterYear.map(post => (
-                <PostContainer post={post} key={post.id} />
-              )) :
-              (carMake && carModel) ?
-              filterModel.map(post => (
-                <PostContainer post={post} key={post.id} />
-              )) :
-              (carMake) ?
-              filterMake.map(post => (
-                <PostContainer post={post} key={post.id} />
-              )) :
-              this.state.posts.map(post => (
-                <PostContainer post={post} key={post.id} />
-            ))
-            }
+            <div className='col-8 offset-1'>
+              {carMake && carModel && carYear && category
+                ? filterCategory.map(post => (
+                    <PostContainer post={post} key={post.id} />
+                  ))
+                : carMake && carModel && carYear
+                ? filterYear.map(post => (
+                    <PostContainer post={post} key={post.id} />
+                  ))
+                : carMake && carModel
+                ? filterModel.map(post => (
+                    <PostContainer post={post} key={post.id} />
+                  ))
+                : carMake
+                ? filterMake.map(post => (
+                    <PostContainer post={post} key={post.id} />
+                  ))
+                : posts.map(post => (
+                    <PostContainer post={post} key={post.id} />
+                  ))}
             </div>
           </div>
         </div>
@@ -108,6 +113,5 @@ class Posts extends Component {
     );
   }
 }
-
 
 export default withRouter(Posts);

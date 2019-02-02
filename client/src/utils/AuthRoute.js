@@ -1,6 +1,6 @@
-import React from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 const RequireAuth = ComposedComponent => {
   class Authentication extends React.Component {
@@ -19,13 +19,13 @@ const RequireAuth = ComposedComponent => {
     }
 
     userCheck = () => {
-      if (this.props.status === "banned"){
-        this.context.router.history.push("/banned");
+      if (this.props.status === 'banned') {
+        this.context.router.history.push('/banned');
       }
       if (!this.props.authenticated) {
-        this.context.router.history.push("/login");
+        this.context.router.history.push('/login');
       }
-    }
+    };
 
     render() {
       return <ComposedComponent {...this.props} />;
@@ -36,7 +36,8 @@ const RequireAuth = ComposedComponent => {
     return {
       authenticated: state.auth.authenticated,
       username: state.auth.username,
-      status: state.auth.status
+      status: state.auth.status,
+      id: state.auth.id
     };
   };
 

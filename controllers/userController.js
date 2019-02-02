@@ -1,53 +1,48 @@
-const db = require("../models");
-const passport = require("../config/passport");
+const db = require('../models');
+const passport = require('../config/passport');
 const multer = require('multer');
 const path = require('path');
-var isAuthenticated = require("../config/middleware/isAuthenticated");
-
+var isAuthenticated = require('../config/middleware/isAuthenticated');
 
 module.exports = {
   createUser: function(req, res) {
-    console.log("================== CREATE USER - USERCONTROLLER =================")
     db.User.create(req.body)
-      .then(dbModel => res.json("/login"))
+      .then(dbModel => res.json('/login'))
       .catch(err => res.status(422).json(err));
   },
   userLogin: function(req, res) {
-    console.log("==================USER LOGIN - USERCONTROLLER =================")
-      if (req.isAuthenticated()) {
-        res.json(req.user)
-      }
+    if (req.isAuthenticated()) {
+      res.json(req.user);
+    }
   },
   userInfo: function(req, res) {
-    console.log("================== FIND USER - USERCONTROLLER =================");
-    db.User.findOne({where: {id: req.params.id},
-      include: [{model: db.Post}]
+    db.User.findOne({
+      where: { id: req.params.id },
+      include: [{ model: db.Post }]
     })
       .then(dbUser => {
-        db.Comment.findAll({where: {UserId: req.params.id}
-        })
+        db.Comment.findAll({ where: { UserId: req.params.id } })
           .then(dbComment => {
-            res.json({user: dbUser, comments: dbComment})
+            res.json({ user: dbUser, comments: dbComment });
           })
-          .catch(err => console.log(err))
+          .catch(err => console.log(err));
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
   },
   allUsers: function(req, res) {
     db.User.findAll()
       .then(dbUser => {
-        console.log(dbUser)
-        res.json(dbUser)})
-      .catch(err => console.log(err))
+        res.json(dbUser);
+      })
+      .catch(err => console.log(err));
   },
   updateUserStatus: function(req, res) {
     db.User.update(req.body, {
       where: {
         id: req.params.id
       }
-    })
-      .then(dbUser => {
-        console.log(dbUser)
-        res.json(dbUser)})
+    }).then(dbUser => {
+      res.json(dbUser);
+    });
   }
 };
